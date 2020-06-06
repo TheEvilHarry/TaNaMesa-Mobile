@@ -2,11 +2,13 @@ package com.example.tanamesaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.tanamesaapp.models.Order;
 import com.example.tanamesaapp.models.Product;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -47,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
         Order order = new Order();
         List<Product> products = new ArrayList<>();
         order.setProducts(products);
-        order.setId(1);
-        db.child("orders").child(Integer.toString(order.getId())).setValue(order);
+        order.setId(123);
+        db.child("orders").child(Integer.toString(order.getId())).setValue(order)
+                .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAAAAAAAAAAAAG", e.getLocalizedMessage());
+            }});
 
         Intent intent = new Intent(this,MainPage.class);
         startActivity(intent);
