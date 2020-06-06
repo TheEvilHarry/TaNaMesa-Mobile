@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "174554487711",
+    "firebase_url": "https://ta-na-mesa-app.firebaseio.com",
+    "project_id": "ta-na-mesa-app",
+    "storage_bucket": "ta-na-mesa-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174554487711:android:e01df8780bc50dfec4fbaa",
+        "android_client_info": {
+          "package_name": "com.example.tanamesaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174554487711-kqcmto6hqlcvmj118990b3a7u0tk7ju3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAoyOHt11LD58eSfCqG2Ln7xewNDQ6IaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174554487711-kqcmto6hqlcvmj118990b3a7u0tk7ju3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
