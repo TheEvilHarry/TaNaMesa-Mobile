@@ -11,8 +11,11 @@ import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.models.Table;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         tableText = findViewById(R.id.tableText);
         restaurantText = findViewById(R.id.restaurantText);
 
-        String[] splittedQRText = tableNumber.split("/");
-        String restaurantName = splittedQRText[1].replace("-"," ");
-        restaurantText.setText(restaurantName);
-        tableText.setText("Mesa " + splittedQRText[2]);
+//        String[] splittedQRText = tableNumber.split("/");
+//        String restaurantName = splittedQRText[1].replace("-"," ");
+//        restaurantText.setText(restaurantName);
+//        tableText.setText("Mesa " + splittedQRText[2]);
 
 
 
@@ -62,22 +65,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    //COLOQUEM AQUI A ID DA MESA DO VIVENTE
     public void openMainPage(View v){
         Log.d("TAG", "openMainPage: SOCORRO");
-        db = FirebaseDatabase.getInstance().getReference("app");
-
-        Table table = new Table();
-        table.setId(0);
-        table.setTotalTable(0);
-        table.setOrders(new ArrayList<Product>());
-        table.setAvailable(true);
-        table.setNeedingWaiter(false);
-
-        db.child("Tables").child(Integer.toString(table.getId())).setValue(table);
-
-
+        int id=0;
         Intent intent = new Intent(this,MainPage.class);
-        intent.putExtra("ID",table.getId());
+        intent.putExtra("ID",id);
         startActivity(intent);
     }
 
