@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         String tableNumber = intent.getStringExtra("tableNumber");
         String restaurantName = intent.getStringExtra("restaurantName");
 
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         button = findViewById(R.id.button);
         tableText = findViewById(R.id.tableText);
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         restaurantText.setText(restaurantName);
         tableText.setText("Mesa " + tableNumber);
+
 
 
 
