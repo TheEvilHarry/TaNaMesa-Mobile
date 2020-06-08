@@ -84,10 +84,18 @@ public class ReaderPage extends AppCompatActivity {
                 if (qrCodes.size() != 0) {
                     if (!qrValue.equals(ReaderPage.oldqrValue)) {
                         ReaderPage.oldqrValue = qrValue;
+
                         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                         vibrator.vibrate(200);
+
+                        String[] splittedQRText = qrValue.split("/");
+                        String restaurantName = splittedQRText[1].replace("-"," ");
+                        String tableNumber = splittedQRText[2];
+
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("TableNumber", qrValue);
+                        intent.putExtra("tableNumber", tableNumber);
+                        intent.putExtra("restaurantName", restaurantName);
+
                         finish();
                         startActivity(intent);
                     }
