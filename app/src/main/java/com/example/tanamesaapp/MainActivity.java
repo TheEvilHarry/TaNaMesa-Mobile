@@ -37,17 +37,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        String tableNumber = intent.getStringExtra("TableNumber");
+        String tableNumber = intent.getStringExtra("tableNumber");
+        String restaurantName = intent.getStringExtra("restaurantName");
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         button = findViewById(R.id.button);
         tableText = findViewById(R.id.tableText);
         restaurantText = findViewById(R.id.restaurantText);
 
-        String[] splittedQRText = tableNumber.split("/");
-        String restaurantName = splittedQRText[1].replace("-"," ");
         restaurantText.setText(restaurantName);
-        tableText.setText("Mesa " + splittedQRText[2]);
+        tableText.setText("Mesa " + tableNumber);
+
 
 
 
