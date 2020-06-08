@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tanamesaapp.models.Order;
 import com.example.tanamesaapp.models.Product;
+import com.example.tanamesaapp.models.Table;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tableText;
     private TextView restaurantText;
     private DatabaseReference db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG", "openMainPage: SOCORRO");
         db = FirebaseDatabase.getInstance().getReference("app");
 
-        Order order = new Order();
-        List<Product> products = new ArrayList<>();
-        order.setProducts(products);
-        order.setId(123);
-        db.child("orders").child(Integer.toString(order.getId())).setValue(order)
-                .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("TAAAAAAAAAAAAG", e.getLocalizedMessage());
-            }});
+        Table table = new Table();
+        table.setId(0);
+        table.setTotalTable(0);
+        table.setOrders(new ArrayList<Product>());
+        table.setAvailable(true);
+        table.setNeedingWaiter(false);
+
+        db.child("Tables").child(Integer.toString(table.getId())).setValue(table);
+
 
         Intent intent = new Intent(this,MainPage.class);
+        intent.putExtra("ID",table.getId());
         startActivity(intent);
     }
 

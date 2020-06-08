@@ -3,23 +3,27 @@ package com.example.tanamesaapp.models;
 import java.util.List;
 
 public class Table {
-    private long id;
-    private List<Order> tableOrders;
+    private int id;
+    private List<Product> orders;
     private float totalTable=0;
+    private boolean waitingOrder=false;
     private boolean available=true;
     private boolean needingWaiter=false;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public List<Order> getTableOrders() {
-        return tableOrders;
+    public List<Product> getOrders() {
+        return orders;
     }
 
     public float getTotalTable() {
-        this.calculateTableTotal();
         return totalTable;
+    }
+
+    public boolean isWaitingOrder() {
+        return waitingOrder;
     }
 
     public boolean isAvailable() {
@@ -30,12 +34,20 @@ public class Table {
         return needingWaiter;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setTableOrders(List<Order> tableOrders) {
-        this.tableOrders = tableOrders;
+    public void setOrders(List<Product> orders) {
+        this.orders = orders;
+    }
+
+    public void setTotalTable(float totalTable) {
+        this.totalTable = totalTable;
+    }
+
+    public void setWaitingOrder(boolean waitingOrder) {
+        this.waitingOrder = waitingOrder;
     }
 
     public void setAvailable(boolean available) {
@@ -44,29 +56,5 @@ public class Table {
 
     public void setNeedingWaiter(boolean needingWaiter) {
         this.needingWaiter = needingWaiter;
-    }
-
-    public void calculateTableTotal(){
-        float totalOrder=0;
-        float total=0;
-
-        if(tableOrders.isEmpty()){
-            totalTable=0;
-        }
-        else{
-            for(Order order:tableOrders){
-                order.calculateOrderTotal();
-                totalOrder = order.getOrderTotal();
-                total+=totalOrder;
-            }
-            totalTable=total;
-        }
-    }
-
-    public void addOrderToTable(Order order){
-        List<Order> tableOrders = getTableOrders();
-        tableOrders.add(order);
-        setTableOrders(tableOrders);
-        this.calculateTableTotal();
     }
 }

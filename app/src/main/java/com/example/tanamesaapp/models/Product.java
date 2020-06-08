@@ -6,6 +6,7 @@ public class Product {
     private String name;
     private float price;
     private String category;
+    private boolean served=false;
 
     public void setId(int id) {
         this.id = id;
