@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.tanamesaapp.models.Order;
 import com.example.tanamesaapp.models.Product;
@@ -26,14 +27,30 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+    private TextView tableText;
+    private TextView restaurantText;
     private DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        String tableNumber = intent.getStringExtra("TableNumber");
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        button = (Button) findViewById(R.id.button);
+        button = findViewById(R.id.button);
+        tableText = findViewById(R.id.tableText);
+        restaurantText = findViewById(R.id.restaurantText);
+
+        String[] splittedQRText = tableNumber.split("/");
+        String restaurantName = splittedQRText[1].replace("-"," ");
+        restaurantText.setText(restaurantName);
+        tableText.setText("Mesa " + splittedQRText[2]);
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -45,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openMainPage(View v){
+        Log.d("TAG", "openMainPage: SOCORRO");
         db = FirebaseDatabase.getInstance().getReference("app");
 
         Order order = new Order();
