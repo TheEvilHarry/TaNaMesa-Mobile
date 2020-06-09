@@ -39,7 +39,7 @@ public class NotificationsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         final TextView textView = root.findViewById(R.id.tv);
-        textView.setText("VAI TOMA NO CU");
+        textView.setText("Total a pagar");
 
 
         listView = root.findViewById(R.id.orderListView);
