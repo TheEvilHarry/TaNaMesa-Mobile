@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         button = findViewById(R.id.button);
         tableText = findViewById(R.id.tableText);
+        tableText.setText(tableText.getText() + " " + tableNumber);
         restaurantText = findViewById(R.id.restaurantText);
 
         // Passing each menu ID as a set of Ids because each
