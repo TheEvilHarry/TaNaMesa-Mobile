@@ -1,36 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ReaderPage">
+
+    <include
+        android:id="@+id/mp_actionbar"
+        layout="@layout/top_actionbar"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="61dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/camerapreview"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="86dp"
-        android:fontFamily="@font/open_sans"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/open_sans_bold"
         android:text="Bem-vindo ao TáNaMesa"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#333333"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/camerapreview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mp_actionbar" />
 
     <SurfaceView
         android:id="@+id/camerapreview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_centerInParent = "true" />
+        android:layout_marginBottom="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/infotext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/infotext"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/camerapreview"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="171dp"
         android:fontFamily="@font/open_sans_light"
         android:gravity="center"
         android:text="Scaneie o QR Code de sua mesa"
-        android:textSize="18dp" />
-</RelativeLayout>
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camerapreview" />
+
+    <Button
+        android:id="@+id/simulate"
+        android:layout_width="168dp"
+        android:layout_height="68dp"
+        android:background="@drawable/color"
+        android:text="Simula Leitura"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infotext"
+        app:layout_constraintVertical_bias="0.368" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
