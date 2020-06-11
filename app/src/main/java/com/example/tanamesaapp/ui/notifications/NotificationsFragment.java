@@ -39,10 +39,10 @@ public class NotificationsFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
-        String data = String.valueOf(((MainPage)getActivity()).getTableID());
+//        String data = String.valueOf(((MainAc)getActivity()).getTableID());
 
         final TextView textView = root.findViewById(R.id.tv);
-        textView.setText("Total a pagar " + data);
+        textView.setText("Total a pagar ");
 
 
         listView = root.findViewById(R.id.orderListView);
