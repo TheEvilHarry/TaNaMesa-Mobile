@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tanamesaapp.models.Product;
-import com.example.tanamesaapp.models.Table;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +23,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.mp_actionbar);
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         String tableNumber = intent.getStringExtra("tableNumber");
@@ -50,20 +50,13 @@ public class MainActivity extends AppCompatActivity {
         tableText = findViewById(R.id.tableText);
         restaurantText = findViewById(R.id.restaurantText);
 
-
-//        String[] splittedQRText = tableNumber.split("/");
-//        String restaurantName = splittedQRText[1].replace("-"," ");
-//        restaurantText.setText(restaurantName);
-//        tableText.setText("Mesa " + splittedQRText[2]);
-
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
 
