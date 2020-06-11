@@ -56,7 +56,7 @@ public class MainPage extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    private int getTableID(){
+    public int getTableID(){
         Intent intent = getIntent();
         int id = intent.getIntExtra("ID",-1);
         return id;

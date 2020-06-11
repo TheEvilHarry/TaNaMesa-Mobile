@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.R;
 
 public class NotificationsFragment extends Fragment {
@@ -27,9 +28,9 @@ public class NotificationsFragment extends Fragment {
 
     Context context;
     ListView listView;
-    String titles[] = {"Facebook", "Twitter", "Instagam", "Youtube"};
-    String descriptions[] = {"Facebook description", "Twitter description", "Instagam description", "Youtube description"};
-    int images[] = {R.drawable.facebook, R.drawable.twitter, R.drawable.instagram, R.drawable.youtube};
+    String titles[] = {"Pizza Macarena", "Guaraná", "Água Mineral", "Massa Primavera"};
+    String descriptions[] = {"49,50", "5.50", "20,90", "49.60"};
+    int images[] = {R.drawable.pizza, R.drawable.guarana, R.drawable.agua, R.drawable.massa};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,8 +39,10 @@ public class NotificationsFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
+        String data = String.valueOf(((MainPage)getActivity()).getTableID());
+
         final TextView textView = root.findViewById(R.id.tv);
-        textView.setText("Total a pagar");
+        textView.setText("Total a pagar " + data);
 
 
         listView = root.findViewById(R.id.orderListView);
