@@ -2,6 +2,7 @@ package com.example.tanamesaapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,6 +32,8 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        Toolbar toolbar = findViewById(R.id.mp_actionbar);
+        setSupportActionBar(toolbar);
         startDatabase();
         setupData();
         setupUI();
