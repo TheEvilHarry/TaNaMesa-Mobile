@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        //Método para mudar a view
+        navController.navigate(R.id.navigation_notifications);
     }
 
     //COLOQUEM AQUI A ID DA MESA DO VIVENTE
