@@ -50,7 +50,6 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
         switch (item.getItemId()) {
             case R.id.navigation_notifications: {
                 Intent intent = new Intent(this,CloseAccount.class);
-=======
                 startActivity(intent);
             }
             case R.id.navigation_dashboard: {
