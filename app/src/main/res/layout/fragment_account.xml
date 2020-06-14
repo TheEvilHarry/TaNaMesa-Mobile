@@ -8,6 +8,8 @@
     tools:context=".ui.notifications.NotificationsFragment"
     android:layout_marginTop="10dp">
 
+
+
     <Button
         android:id="@+id/button2"
         android:layout_width="fill_parent"
@@ -23,16 +25,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.935" />
 
+
     <ListView
         android:id="@+id/orderListView"
-        android:layout_width="match_parent"
-        android:layout_height="475dp"
+        android:layout_width="413dp"
+        android:layout_height="440dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.313" />
 
     <TextView
         android:id="@+id/tv"

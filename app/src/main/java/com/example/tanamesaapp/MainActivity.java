@@ -41,27 +41,36 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        String tableNumber = intent.getStringExtra("tableNumber");
+        String tableNumber = intent.getStringExtra("ID");
         String restaurantName = intent.getStringExtra("restaurantName");
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        button = findViewById(R.id.button);
         tableText = findViewById(R.id.tableText);
-        tableText.setText(tableText.getText() + " " + tableNumber);
         restaurantText = findViewById(R.id.restaurantText);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
         NavigationUI.setupWithNavController(navView, navController);
 
-        //Método para mudar a view
+
         navController.navigate(R.id.navigation_notifications);
+
+
+    }
+
+
+    private String getPageToOpen(){
+        String page = getIntent().getStringExtra("Page");
+        return page;
     }
 
     //COLOQUEM AQUI A ID DA MESA DO VIVENTE

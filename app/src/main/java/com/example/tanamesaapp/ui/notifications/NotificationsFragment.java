@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.R;
 
 public class NotificationsFragment extends Fragment {
@@ -37,12 +36,14 @@ public class NotificationsFragment extends Fragment {
         context = container.getContext();
         notificationsViewModel =
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View root = inflater.inflate(R.layout.fragment_account, container, false);
 
 //        String data = String.valueOf(((MainAc)getActivity()).getTableID());
 
         final TextView textView = root.findViewById(R.id.tv);
         textView.setText("Total a pagar ");
+
+
 
 
         listView = root.findViewById(R.id.orderListView);

@@ -6,32 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openMainPage"
-        android:text="go to main page"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableText"
-        app:layout_constraintVertical_bias="0.171" />
-
-    <TextView
-        android:id="@+id/tableText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/m_bold"
-        android:text="SUA MESA"
-        android:textColor="#494949"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurantText"
-        app:layout_constraintVertical_bias="0.083" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
@@ -63,18 +37,5 @@
         layout="@layout/top_actionbar"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="61dp" />
-
-    <TextView
-        android:id="@+id/restaurantText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:fontFamily="@font/m_bold"
-        android:text="BEM-VINDO(A)"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mp_actionbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

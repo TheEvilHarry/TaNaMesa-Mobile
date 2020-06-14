@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.models.Table;
@@ -27,6 +28,7 @@ public class MainPage extends AppCompatActivity {
     private int tableID;
     private Table table;
     private Product product;
+    private String restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainPage extends AppCompatActivity {
 
     private void setupData(){
         tableID = getTableID();
+        restaurant= getIntent().getStringExtra("restaurantName");
         LoadTableFromDatabase();
         setTableListener();
     }
@@ -57,11 +60,17 @@ public class MainPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
+
+
 
     public int getTableID(){
         Intent intent = getIntent();
-        int id = intent.getIntExtra("ID",-1);
+        int id =0;
+        String tableNumber = intent.getStringExtra("tableNumber");
+        Log.d("HERE BTC", "" +tableNumber);
+        id = Integer.valueOf(tableNumber);
         return id;
     }
 
@@ -100,6 +109,23 @@ public class MainPage extends AppCompatActivity {
     private void resetUIAfterDataChange(){
         //TODO
     }
+
+    public void closeAccount(View v){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("ID", "0");
+        intent.putExtra("restaurantName", "Ponto UFRGS");
+        intent.putExtra("Page","Account");
+        startActivity(intent);
+    }
+
+    public void opensMenu(View v){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("ID", "0");
+        intent.putExtra("restaurantName", "Ponto UFRGS");
+        intent.putExtra("Page","Menu");
+        startActivity(intent);
+    }
+
 
     public void setTableListener(){
         db.addValueEventListener(new ValueEventListener() {
