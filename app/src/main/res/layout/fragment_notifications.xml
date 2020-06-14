@@ -10,6 +10,12 @@
     android:background="@android:color/white"
     android:clickable="true">
 
+    <include
+        android:id="@+id/mp_actionbar"
+        layout="@layout/top_actionbar"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="61dp" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="fill_parent"

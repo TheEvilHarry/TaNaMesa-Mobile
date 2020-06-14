@@ -20,8 +20,8 @@ public class CloseAccount extends AppCompatActivity {
 
     Context context;
     ListView listView;
-    String titles[] = {"Pizza 4 Queijos", "Guaraná"};
-    String descriptions[] = {"49,50", "5.50"};
+    String titles[] = {"Pizza Macarena", "Guaraná", "Água Mineral", "Massa Primavera"};
+    String descriptions[] = {"49,50", "5.50", "20,90", "49.60"};
     int images[] = {R.drawable.pizza, R.drawable.guarana, R.drawable.agua, R.drawable.massa};
 
     @Override
