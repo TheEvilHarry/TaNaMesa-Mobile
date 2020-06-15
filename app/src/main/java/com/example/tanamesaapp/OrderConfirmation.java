@@ -24,7 +24,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
     private ListView listView;
 
-    String titles[] = {"Pizza 4 Queijos - FAMILIA", "Guaraná"};
+    String titles[] = {"Pizza 4 Queijos", "Guaraná"};
     String descriptions[] = {"49,50", "5.50"};
     int images[] = {R.drawable.pizza, R.drawable.guarana};
 

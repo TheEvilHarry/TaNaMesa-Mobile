@@ -46,7 +46,7 @@ public class MainPage extends AppCompatActivity {
 
     private void setupData(){
         tableID = getTableID();
-        setTableListener();
+        //setTableListener();
     }
 
     private void setupUI(){
