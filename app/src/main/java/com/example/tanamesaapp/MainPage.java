@@ -3,10 +3,6 @@ package com.example.tanamesaapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.models.Table;
+import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainPage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "MainPage";
     private DatabaseReference db;
     private int tableID;
     private Table table;
@@ -46,12 +44,16 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_notifications: {
+                Log.w(TAG, "onNavigationItemSelected: CU DE CONTA");
                 Intent intent = new Intent(this,CloseAccount.class);
                 startActivity(intent);
+                break;
             }
             case R.id.navigation_dashboard: {
+                Log.w(TAG, "onNavigationItemSelected: CU DE DASHBOARD");
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
+                break;
             }
             case R.id.navigation_home: {
                 break;
