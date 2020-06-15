@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.tanamesaapp.ar.HelloArActivity;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -214,9 +215,11 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         });
 
         source.setOnClickListener(v -> {
-            Intent intentSource = new Intent(Intent.ACTION_VIEW);
-            intentSource.setData(Uri.parse(meal.getStrSource()));
-            startActivity(intentSource);
+//            Intent intentSource = new Intent(Intent.ACTION_VIEW);
+//            intentSource.setData(Uri.parse(meal.getStrSource()));
+//            startActivity(intentSource);
+            Intent ARIntent = new Intent(this, HelloArActivity.class);
+            startActivity(ARIntent);
         });
 
     }

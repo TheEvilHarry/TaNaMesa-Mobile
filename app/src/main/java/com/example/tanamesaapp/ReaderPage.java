@@ -45,13 +45,13 @@ public class ReaderPage extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480).build();
+                .setRequestedPreviewSize(600, 720).build();
 
         button = findViewById(R.id.simulate);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 intent.putExtra("tableNumber", "8");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
 
@@ -107,7 +107,7 @@ public class ReaderPage extends AppCompatActivity {
                         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                         vibrator.vibrate(200);
                       
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainPage.class);
                         intent.putExtra("tableNumber", tableNumber);
                         intent.putExtra("restaurantName", restaurantName);
 

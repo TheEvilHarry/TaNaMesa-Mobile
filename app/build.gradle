@@ -36,6 +36,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    // ARCore library
+    implementation 'com.google.ar:core:1.0.0'
+    // Obj - a simple Wavefront OBJ file loader
+    // https://github.com/javagl/Obj
+    implementation 'de.javagl:obj:0.2.1'
+
     implementation 'com.google.firebase:firebase-database:16.0.4'
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
