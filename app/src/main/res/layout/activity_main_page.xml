@@ -33,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/m_bold"
-        android:text="SUA MESA"
+        android:text="SUA MESA:"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurantText"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <include
         android:id="@+id/mp_actionbar"
@@ -140,6 +140,21 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <TextView
+        android:id="@+id/front_table"
+        android:layout_width="19dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/m_bold"
+        android:gravity="top|center_vertical"
+        android:text="8"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/tableText"
+        app:layout_constraintTop_toBottomOf="@+id/restaurantText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.models.Table;
@@ -30,6 +31,7 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     private Table table;
     private Product product;
     private BottomNavigationView menu;
+    private TextView frontTableNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
 
     private void setupData(){
         tableID = getTableID();
+        frontTableNumber = findViewById(R.id.front_table);
+        frontTableNumber.setText(tableID);
         //setTableListener();
     }
 
