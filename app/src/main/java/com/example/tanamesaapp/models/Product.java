@@ -4,7 +4,7 @@ public class Product {
 
     private int id;
     private String name;
-    private float price;
+    private float country;
     private String category;
     private boolean served=false;
 
@@ -16,8 +16,8 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setcountry(float country) {
+        this.country = country;
     }
 
     public void setCategory(String category) {
@@ -32,8 +32,8 @@ public class Product {
         return name;
     }
 
-    public float getPrice() {
-        return price;
+    public float getcountry() {
+        return country;
     }
 
     public String getCategory() {
