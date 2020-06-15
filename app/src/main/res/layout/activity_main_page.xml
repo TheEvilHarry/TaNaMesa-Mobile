@@ -84,6 +84,7 @@
         android:layout_marginTop="60dp"
         android:alpha="1.0"
         android:fontFamily="@font/m_bold"
+        android:onClick="AccessOrderConfirmation"
         android:shadowColor="#000000"
         android:text="    FAZER PEDIDO    "
         android:textSize="24sp"

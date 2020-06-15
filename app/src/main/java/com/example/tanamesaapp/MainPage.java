@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.models.Table;
@@ -45,7 +46,6 @@ public class MainPage extends AppCompatActivity {
 
     private void setupData(){
         tableID = getTableID();
-        LoadTableFromDatabase();
         setTableListener();
     }
 
@@ -65,26 +65,32 @@ public class MainPage extends AppCompatActivity {
         return id;
     }
 
-    //This function is asyncronomous, which means we have to find a way to ask the app to wait() for the data somehow.
-    private void LoadTableFromDatabase(){
-        db.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
-                    Table t = objSnapshot.getValue(Table.class);
-                    if(t.getId() == tableID){
-                        table=t;
-                        Log.d("CHANGE",Integer.toString(t.getId()));
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    //FOR TESTING
+    public void AccessOrderConfirmation(View view){
+        Intent intent = new Intent(this, OrderConfirmation.class);
+        startActivity(intent);
     }
+
+    //This function is asyncronomous, which means we have to find a way to ask the app to wait() for the data somehow.
+//    private void LoadTableFromDatabase(){
+//        db.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+//                    Table t = objSnapshot.getValue(Table.class);
+//                    if(t.getId() == tableID){
+//                        table=t;
+//                        Log.d("CHANGE",Integer.toString(t.getId()));
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
     //This function is asyncronomous, which means we have to find a way to ask the app to wait() for the data somehow.
     private void resetTableFromDatabase(DataSnapshot dataSnapshot){
         for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
