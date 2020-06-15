@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Developed by Haerul Muttaqin
-  Last modified 3/17/19 5:24 AM
-  Subscribe : https://www.youtube.com/haerulmuttaqin
-  Copyright (c) 2019. All rights reserved
-  -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,16 +9,18 @@
 
 
     <androidx.core.widget.NestedScrollView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fillViewport="true"
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:background="@color/colorBackground"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <RelativeLayout
             android:id="@+id/headerView"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="300dp"
+            android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"
@@ -33,37 +29,38 @@
 
             <TextView
                 android:id="@+id/title"
-                android:textColor="@color/colorWhite"
-                android:text=""
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSearch"
-                android:layout_below="@id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="16dp"
+                android:text=""
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="16dp"
                 app:cardBackgroundColor="@color/colorPrimaryDark"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_search_primary_light"
+                    android:drawableLeft="@drawable/ic_search_primary_light"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
                     android:padding="10dp"
                     android:text="@string/search_your_recipes"
-                    android:textColor="@color/colorPrimaryLight"
-                    android:gravity="center_vertical"
-                    android:drawableLeft="@drawable/ic_search_primary_light"
-                    android:drawableStart="@drawable/ic_search_primary_light"
-                    android:drawablePadding="10dp"/>
+                    android:textColor="@color/colorPrimaryLight" />
             </androidx.cardview.widget.CardView>
 
             <androidx.viewpager.widget.ViewPager
@@ -78,44 +75,32 @@
 
             <TextView
                 android:id="@+id/titleCategory"
-                android:text="@string/meal_categories"
-                android:textSize="19sp"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/viewPagerHeader"/>
+                android:layout_below="@id/viewPagerHeader"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/meal_categories"
+                android:textColor="@color/colorPrimary"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerCategory"
-                android:scrollbars="none"
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_below="@id/titleCategory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/titleCategory"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="50dp" />
+                android:layout_marginBottom="50dp"
+                android:clipToPadding="false"
+                android:scrollbars="none" />
 
-             <include android:id="@+id/shimmerCategory"
+            <include
+                android:id="@+id/shimmerCategory"
                 layout="@layout/item_recycler_category_shimmer" />
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                app:menu="@menu/bottom_nav_menu"
-                android:id="@+id/nav_view"
-                android:gravity="center"
-                android:background="?android:attr/windowBackground"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-               >
-
-            </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
@@ -125,5 +110,17 @@
         layout="@layout/top_actionbar"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="61dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
+        app:menu="@menu/bottom_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

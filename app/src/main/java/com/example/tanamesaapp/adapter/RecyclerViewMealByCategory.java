@@ -1,16 +1,16 @@
 package com.example.tanamesaapp.adapter;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tanamesaapp.R;
-import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.models.Meals;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,46 +18,46 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHomeAdapter.RecyclerViewHolder> {
+public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerViewMealByCategory.RecyclerViewHolder> {
 
-    private List<Categories.Category> categories;
+    private List<Meals.Meal> meals;
     private Context context;
     private static ClickListener clickListener;
 
-    public RecyclerViewHomeAdapter(List<Categories.Category> categories, Context context) {
-        this.categories = categories;
+    public RecyclerViewMealByCategory(Context context, List<Meals.Meal> meals) {
+        this.meals = meals;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public RecyclerViewHomeAdapter.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_recycler_category,
+    public RecyclerViewMealByCategory.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_recycler_meal,
                 viewGroup, false);
         return new RecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHomeAdapter.RecyclerViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerViewMealByCategory.RecyclerViewHolder viewHolder, int i) {
 
-        String strCategoryThum = categories.get(i).getStrCategoryThumb();
-        Picasso.get().load(strCategoryThum).placeholder(R.drawable.ic_circle).into(viewHolder.categoryThumb);
+        String strMealThumb = meals.get(i).getStrMealThumb();
+        Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(viewHolder.mealThumb);
 
-        String strCategoryName = categories.get(i).getStrCategory();
-        viewHolder.categoryName.setText(strCategoryName);
+        String strMealName = meals.get(i).getStrMeal();
+        viewHolder.mealName.setText(strMealName);
     }
 
 
     @Override
     public int getItemCount() {
-        return categories.size();
+        return meals.size();
     }
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.categoryThumb)
-        ImageView categoryThumb;
-        @BindView(R.id.categoryName)
-        TextView categoryName;
+        @BindView(R.id.mealThumb)
+        ImageView mealThumb;
+        @BindView(R.id.mealName)
+        TextView mealName;
         RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -72,7 +72,7 @@ public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHo
 
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        RecyclerViewHomeAdapter.clickListener = clickListener;
+        RecyclerViewMealByCategory.clickListener = clickListener;
     }
 
 

@@ -1,9 +1,3 @@
-/*-----------------------------------------------------------------------------
- - Developed by Haerul Muttaqin                                               -
- - Last modified 3/24/19 12:40 PM                                             -
- - Subscribe : https://www.youtube.com/haerulmuttaqin                         -
- - Copyright (c) 2019. All rights reserved                                    -
- -----------------------------------------------------------------------------*/
 package com.example.tanamesaapp.adapter;
 
 import android.os.Bundle;
@@ -11,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.tanamesaapp.models.Categories;
 import com.example.tanamesaapp.ui.category.CategoryFragment;
@@ -21,8 +16,8 @@ public class ViewPagerCategoryAdapter extends FragmentPagerAdapter {
 
     private List<Categories.Category> categories;
 
-    public ViewPagerCategoryAdapter(FragmentManager fm, List<Categories.Category> categories) {
-        super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public ViewPagerCategoryAdapter(FragmentManager fm, List<Categories.Category> categories, int behaviour) {
+        super(fm, behaviour);
         this.categories = categories;
     }
 

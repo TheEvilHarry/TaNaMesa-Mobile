@@ -44,18 +44,16 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_notifications: {
-                Log.w(TAG, "onNavigationItemSelected: CU DE CONTA");
                 Intent intent = new Intent(this,CloseAccount.class);
                 startActivity(intent);
                 break;
             }
             case R.id.navigation_dashboard: {
-                Log.w(TAG, "onNavigationItemSelected: CU DE DASHBOARD");
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
                 break;
             }
             case R.id.navigation_home: {
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
                 break;
             }
         }
