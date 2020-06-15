@@ -39,8 +39,8 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = findViewById(R.id.mp_actionbar);
         setSupportActionBar(toolbar);
-        startDatabase();
-        setupData();
+//        startDatabase();
+//        setupData();
         setupUI();
         menu.setOnNavigationItemSelectedListener(this);
     }
@@ -53,7 +53,8 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
                 startActivity(intent);
             }
             case R.id.navigation_dashboard: {
-                break;
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
             }
             case R.id.navigation_home: {
                 break;
