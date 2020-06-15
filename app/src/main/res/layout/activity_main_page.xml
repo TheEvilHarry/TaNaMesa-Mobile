@@ -84,7 +84,6 @@
         android:layout_marginTop="60dp"
         android:alpha="1.0"
         android:fontFamily="@font/m_bold"
-        android:onClick="AccessOrderConfirmation"
         android:shadowColor="#000000"
         android:text="    FAZER PEDIDO    "
         android:textSize="24sp"
@@ -96,6 +95,7 @@
     <Button
         android:id="@+id/button5"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#9C0303"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -112,7 +112,6 @@
     <Button
         android:id="@+id/button6"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:backgroundTint="#9C0303"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
