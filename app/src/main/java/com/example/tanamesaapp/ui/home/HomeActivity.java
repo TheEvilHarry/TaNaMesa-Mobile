@@ -4,20 +4,12 @@
  - Subscribe : https://www.youtube.com/haerulmuttaqin                         -
  - Copyright (c) 2019. All rights reserved                                    -
  -----------------------------------------------------------------------------*/
-package com.example.tanamesaapp;
+package com.example.tanamesaapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.haerul.foodsapp.Utils;
-import com.haerul.foodsapp.adapter.RecyclerViewHomeAdapter;
-import com.haerul.foodsapp.model.Categories;
-import com.haerul.foodsapp.view.category.CategoryActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,6 +17,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.tanamesaapp.R;
+import com.example.tanamesaapp.Utils;
+import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.adapter.RecyclerViewHomeAdapter;
+import com.example.tanamesaapp.ui.category.CategoryActivity;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+
+
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
 
@@ -68,7 +74,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         List<Categories.Category> sampleList = new ArrayList<>();
         sampleList.add(cat1);
         sampleList.add(cat2);
-        RecyclerViewHomeAdapter homeAdapter = new RecyclerViewHomeAdapter(sampleList, this);
+
+        RecyclerViewHomeAdapter homeAdapter = new RecyclerViewHomeAdapter(category, this);
         recyclerViewCategory.setAdapter(homeAdapter);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3,
                 GridLayoutManager.VERTICAL, false);

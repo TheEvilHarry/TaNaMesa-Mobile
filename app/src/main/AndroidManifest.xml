@@ -14,6 +14,8 @@
         <activity android:name=".MainPage" />
         <activity android:name=".ReaderPage" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.category.CategoryActivity"/>
         <activity android:name=".CloseAccount"/>
         <activity
             android:name=".MainPage"

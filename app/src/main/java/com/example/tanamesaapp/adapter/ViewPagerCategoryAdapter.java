@@ -22,7 +22,7 @@ public class ViewPagerCategoryAdapter extends FragmentPagerAdapter {
     private List<Categories.Category> categories;
 
     public ViewPagerCategoryAdapter(FragmentManager fm, List<Categories.Category> categories) {
-        super(fm);
+        super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.categories = categories;
     }
 
