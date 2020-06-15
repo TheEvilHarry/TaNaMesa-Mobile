@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.tanamesaapp.models.Product;
@@ -22,12 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainPage extends AppCompatActivity {
+public class MainPage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private DatabaseReference db;
     private int tableID;
     private Table table;
     private Product product;
+    private BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,24 @@ public class MainPage extends AppCompatActivity {
         startDatabase();
         setupData();
         setupUI();
+        menu.setOnNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_notifications: {
+                Intent intent = new Intent(this,CloseAccount.class);
+                startActivity(intent);
+            }
+            case R.id.navigation_dashboard: {
+                break;
+            }
+            case R.id.navigation_home: {
+                break;
+            }
+        }
+        return true;
     }
 
     public void callWaiter(View v){
@@ -55,13 +75,15 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void setupUI(){
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+
+        menu = (BottomNavigationView) findViewById(R.id.nav_view);
+//        BottomNavigationView navView = findViewById(R.id.nav_view);
+//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+//        NavigationUI.setupWithNavController(navView, navController);
     }
 
     public int getTableID(){
