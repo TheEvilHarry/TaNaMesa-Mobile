@@ -40,6 +40,11 @@ public class MainPage extends AppCompatActivity {
         setupUI();
     }
 
+    public void callWaiter(View v){
+        Intent intent = new Intent(this,CallWaiter.class);
+        startActivity(intent);
+    }
+
     private void startDatabase(){
         db = FirebaseDatabase.getInstance().getReference("app/Tables");
     }

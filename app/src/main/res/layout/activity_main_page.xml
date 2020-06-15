@@ -101,6 +101,7 @@
         android:layout_marginTop="12dp"
         android:alpha="1.0"
         android:fontFamily="@font/m_bold"
+        android:onClick="callWaiter"
         android:shadowColor="#302F2F"
         android:text="CHAMAR GARÇOM"
         android:textSize="24sp"
