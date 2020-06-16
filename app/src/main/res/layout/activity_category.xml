@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/purple_gradient"
-            app:navigationIcon="@drawable/logoicon"
+            app:navigationIcon="@drawable/logoicon2"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
