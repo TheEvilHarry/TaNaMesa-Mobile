@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TaNaMesaApp</string>
     <string name="title_home">Cardápio</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Página Inicial</string>
     <string name="title_notifications">Conta</string>
 
 
