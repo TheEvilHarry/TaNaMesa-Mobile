@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.models.Meals;
+import com.example.tanamesaapp.models.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,12 +21,12 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerViewMealByCategory.RecyclerViewHolder> {
 
-    private List<Meals.Meal> meals;
+    private List<Product> products;
     private Context context;
     private static ClickListener clickListener;
 
-    public RecyclerViewMealByCategory(Context context, List<Meals.Meal> meals) {
-        this.meals = meals;
+    public RecyclerViewMealByCategory(Context context, List<Product> products) {
+        this.products = products;
         this.context = context;
     }
 
@@ -40,17 +41,17 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewMealByCategory.RecyclerViewHolder viewHolder, int i) {
 
-        String strMealThumb = meals.get(i).getStrMealThumb();
+        String strMealThumb = products.get(i).getStrMealThumb();
         Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(viewHolder.mealThumb);
 
-        String strMealName = meals.get(i).getStrMeal();
+        String strMealName = products.get(i).getStrMeal();
         viewHolder.mealName.setText(strMealName);
     }
 
 
     @Override
     public int getItemCount() {
-        return meals.size();
+        return products.size();
     }
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

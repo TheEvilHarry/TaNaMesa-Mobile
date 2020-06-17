@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.adapter.RecyclerViewMealByCategory;
 import com.example.tanamesaapp.models.Meals;
+import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.ui.detail.DetailActivity;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.squareup.picasso.Picasso;
@@ -30,6 +32,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.google.android.gms.vision.L.TAG;
 
 public class CategoryFragment extends Fragment implements CategoryView {
 
@@ -57,7 +61,6 @@ public class CategoryFragment extends Fragment implements CategoryView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         if (getArguments() != null) {
             textCategory.setText(getArguments().getString("EXTRA_DATA_DESC"));
             Picasso.get()
@@ -71,7 +74,7 @@ public class CategoryFragment extends Fragment implements CategoryView {
                     .setMessage(getArguments().getString("EXTRA_DATA_DESC"));
 
             CategoryPresenter presenter = new CategoryPresenter(this);
-            presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME"));
+            presenter.getMealByCategory(getArguments().getString("EXTRA_DATA_NAME_ENGLISH"));
         }
     }
 
@@ -85,21 +88,21 @@ public class CategoryFragment extends Fragment implements CategoryView {
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override
-    public void setMeals(List<Meals.Meal> meals) {
+
+    public void setProducts(List<Product> products) {
         RecyclerViewMealByCategory adapter =
-                new RecyclerViewMealByCategory(getActivity(), meals);
+                new RecyclerViewMealByCategory(getActivity(), products);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        adapter.setOnItemClickListener((view, position) -> {
-            TextView mealName = view.findViewById(R.id.mealName);
-            Intent intent = new Intent(getActivity(), DetailActivity.class);
-            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName.getText().toString());
-            startActivity(intent);
-        });
+//        adapter.setOnItemClickListener((view, position) -> {
+//            TextView mealName = view.findViewById(R.id.mealName);
+//            Intent intent = new Intent(getActivity(), DetailActivity.class);
+//            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName.getText().toString());
+//            startActivity(intent);
+//        });
     }
 
     @Override

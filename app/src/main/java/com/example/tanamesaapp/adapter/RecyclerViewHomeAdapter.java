@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.models.Category;
+import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,11 +22,11 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHomeAdapter.RecyclerViewHolder> {
 
-    private List<Categories.Category> categories;
+    private List<Category> categories;
     private Context context;
     private static ClickListener clickListener;
 
-    public RecyclerViewHomeAdapter(List<Categories.Category> categories, Context context) {
+    public RecyclerViewHomeAdapter(List<Category> categories, HomeActivity context) {
         this.categories = categories;
         this.context = context;
     }

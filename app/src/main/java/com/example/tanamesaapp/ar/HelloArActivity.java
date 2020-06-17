@@ -185,35 +185,6 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
 
         installRequested = false;
-
-        findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                index++;
-                int size = objectNames.size();
-                if (index > size - 1) {
-                    index = 0;
-                }
-                String name = objectNames.get(index);
-                objName = "models/" + name + ".obj";
-                textureName = "models/" + name + ".jpg";
-                isObjReplaced = true;
-            }
-        });
-
-        findViewById(R.id.zoomIn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GlobalClass.scaleFactor += 0.10f;
-            }
-        });
-
-        findViewById(R.id.zoomOut).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GlobalClass.scaleFactor -= 0.10f;
-            }
-        });
     }
 
     private void initActionBar() {

@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.adapter.ViewPagerCategoryAdapter;
 import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.models.Category;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.example.tanamesaapp.ui.home.HomeActivity;
@@ -45,8 +46,8 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void initIntent() {
         Intent intent = getIntent();
-        List<Categories.Category> categories =
-                (List<Categories.Category>) intent.getSerializableExtra(HomeActivity.EXTRA_CATEGORY);
+        List<Category> categories =
+                (List<Category>) intent.getSerializableExtra(HomeActivity.EXTRA_CATEGORY);
         int position = intent.getIntExtra(HomeActivity.EXTRA_POSITION, 0);
 
         ViewPagerCategoryAdapter adapter = new ViewPagerCategoryAdapter(
