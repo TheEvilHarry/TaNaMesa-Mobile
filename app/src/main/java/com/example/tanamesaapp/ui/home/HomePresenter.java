@@ -5,14 +5,26 @@ import android.util.Log;
 
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.models.Category;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.google.android.gms.vision.L.TAG;
+
 class HomePresenter {
 
     private HomeView view;
+    private DatabaseReference db;
 
     public HomePresenter(HomeView view) {
         this.view = view;
@@ -20,34 +32,27 @@ class HomePresenter {
 
 
     void getCategories() {
-
         view.showLoading();
 
-        Call<Categories> categoriesCall = Utils.getApi().getCategories();
-        categoriesCall.enqueue(new Callback<Categories>() {
-            private static final String TAG = "HomePresenter";
+        db = FirebaseDatabase.getInstance().getReference("app/Categories");
+        List<Category> categories = new ArrayList<>();
+
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
-            public void onResponse(@NonNull Call<Categories> call,
-                                   @NonNull Response<Categories> response) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    Category category = objSnapshot.getValue(Category.class);
+                    Log.w(TAG, "onDataChange: CATEGORY" + category.getStrCategory() );
+                    categories.add(category);
+                }
                 view.hideLoading();
-                if (response.isSuccessful() && response.body() != null) {
-
-                    view.setCategory(response.body().getCategories());
-                    Log.w(TAG, "aiv em: aaa");
-                    Log.w(TAG,response.body().getCategories().toString());
-                    Log.w(TAG, "onResponse: aaa");
-                }
-                else {
-                    view.onErrorLoading(response.message());
-                }
+                view.setCategories(categories);
             }
 
             @Override
-            public void onFailure(@NonNull Call<Categories> call, @NonNull Throwable t) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 view.hideLoading();
-                view.onErrorLoading(t.getLocalizedMessage());
             }
         });
     }

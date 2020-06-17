@@ -8,15 +8,16 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.tanamesaapp.models.Categories;
+import com.example.tanamesaapp.models.Category;
 import com.example.tanamesaapp.ui.category.CategoryFragment;
 
 import java.util.List;
 
 public class ViewPagerCategoryAdapter extends FragmentPagerAdapter {
 
-    private List<Categories.Category> categories;
+    private List<Category> categories;
 
-    public ViewPagerCategoryAdapter(FragmentManager fm, List<Categories.Category> categories, int behaviour) {
+    public ViewPagerCategoryAdapter(FragmentManager fm, List<Category> categories, int behaviour) {
         super(fm, behaviour);
         this.categories = categories;
     }
@@ -26,6 +27,7 @@ public class ViewPagerCategoryAdapter extends FragmentPagerAdapter {
         CategoryFragment fragment = new CategoryFragment();
         Bundle args = new Bundle();
         args.putString("EXTRA_DATA_NAME", categories.get(i).getStrCategory());
+        args.putString("EXTRA_DATA_NAME_ENGLISH", categories.get(i).getEnglishName());
         args.putString("EXTRA_DATA_DESC", categories.get(i).getStrCategoryDescription());
         args.putString("EXTRA_DATA_IMAGE", categories.get(i).getStrCategoryThumb());
         fragment.setArguments(args);

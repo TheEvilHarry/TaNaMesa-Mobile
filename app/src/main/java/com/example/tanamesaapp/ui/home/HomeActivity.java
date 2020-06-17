@@ -20,6 +20,7 @@ import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.models.Categories;
 import com.example.tanamesaapp.adapter.RecyclerViewHomeAdapter;
+import com.example.tanamesaapp.models.Category;
 import com.example.tanamesaapp.ui.category.CategoryActivity;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -58,18 +59,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     }
 
     @Override
-    public void setCategory(List<Categories.Category> category) {
-//        public List<Categories> cat
-        Categories.Category cat1 = new Categories.Category("1", "Bife", "https://www.themealdb.com/images/category/beef.png", "\n" +
-                "Carne bovina é o nome culinário da carne de gado, principalmente do músculo esquelético. Os seres humanos comem carne desde os tempos pré-históricos. [1] A carne bovina é uma fonte de proteínas de alta qualidade e nutrientes essenciais. [2]");
-
-        Categories.Category cat2 = new Categories.Category("2", "Frango", "https://www.themealdb.com/images/category/chicken.png", "Frango é um tipo de ave domesticada, uma subespécie de ave vermelha da selva. É um dos animais domésticos mais comuns e difundidos, com uma população total de mais de 19 bilhões em 2011. [1] Os seres humanos geralmente mantêm as galinhas como fonte de alimento (consumindo carne e ovos) e, mais raramente, como animais de estimação.");
-
-        List<Categories.Category> sampleList = new ArrayList<>();
-        sampleList.add(cat1);
-        sampleList.add(cat2);
-
-        RecyclerViewHomeAdapter homeAdapter = new RecyclerViewHomeAdapter(category, this);
+    public void setCategories(List<Category> categories){
+        RecyclerViewHomeAdapter homeAdapter = new RecyclerViewHomeAdapter(categories, this);
         recyclerViewCategory.setAdapter(homeAdapter);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3,
                 GridLayoutManager.VERTICAL, false);
@@ -79,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
         homeAdapter.setOnItemClickListener((view, position) -> {
             Intent intent = new Intent(this, CategoryActivity.class);
-            intent.putExtra(EXTRA_CATEGORY, (Serializable) category);
+            intent.putExtra(EXTRA_CATEGORY, (Serializable) categories);
             intent.putExtra(EXTRA_POSITION, position);
             startActivity(intent);
         });
