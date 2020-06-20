@@ -40,20 +40,24 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             tools:ignore="NewApi" />
         <TextView
-            android:text="@string/meal_categories"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimaryText"
-            android:gravity="center"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:id="@+id/mealName"
-            android:layout_below="@id/mealThumb"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:text="@string/meal_categories"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryText"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:id="@+id/mealName"
+        android:layout_below="@id/mealThumb"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/idMeal"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

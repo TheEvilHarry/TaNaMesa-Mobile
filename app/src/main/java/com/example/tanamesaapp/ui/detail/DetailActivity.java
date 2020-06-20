@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.tanamesaapp.ar.HelloArActivity;
+import com.example.tanamesaapp.models.Details;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import androidx.core.view.ViewCompat;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.example.tanamesaapp.ui.detail.DetailView;
+
+import static com.google.android.gms.vision.L.TAG;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
 
@@ -76,13 +81,15 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         ButterKnife.bind(this);
 
         setupActionBar();
-        
+
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(HomeActivity.EXTRA_DETAIL);
+        String mealId = intent.getStringExtra(HomeActivity.EXTRA_ID);
 
+        Log.w(TAG, "[DETAILS] mealName : " + mealName);
         DetailPresenter presenter = new DetailPresenter(this);
-        presenter.getMealById(mealName);
-        
+        presenter.getMealById(mealId);
+
     }
 
     private void setupActionBar() {
@@ -140,75 +147,72 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     }
 
     @Override
-    public void setMeal(Meals.Meal meal) {
-        Picasso.get().load(meal.getStrMealThumb()).into(mealThumb);
-        collapsingToolbarLayout.setTitle(meal.getStrMeal());
-        category.setText(meal.getStrCategory());
-        priceValue.setText("R$ 24.50");
-        description.setText("Um " + meal.getStrMeal() +" muito gostoso!");
+    public void setDetails(Details details) {
+        Picasso.get().load(details.getStrMealThumb()).into(mealThumb);
+        collapsingToolbarLayout.setTitle(details.getStrMeal());
+        category.setText(details.getStrCategory());
+        priceValue.setText(details.getPrice());
+        description.setText("Um " + details.getStrMeal() +" muito gostoso!");
         setupActionBar();
 
         //===
 
-        if (meal.getStrIngredient1() != null && !meal.getStrIngredient1().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient1());
+        if (details.getStrIngredient1() != null && !details.getStrIngredient1().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient1());
         }
-        if (meal.getStrIngredient2() != null && !meal.getStrIngredient2().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient2());
+        if (details.getStrIngredient2() != null && !details.getStrIngredient2().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient2());
         }
-        if (meal.getStrIngredient3() != null && !meal.getStrIngredient3().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient3());
+        if (details.getStrIngredient3() != null && !details.getStrIngredient3().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient3());
         }
-        if (meal.getStrIngredient4() != null && !meal.getStrIngredient4().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient4());
+        if (details.getStrIngredient4() != null && !details.getStrIngredient4().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient4());
         }
-        if (meal.getStrIngredient5() != null && !meal.getStrIngredient5().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient5());
+        if (details.getStrIngredient5() != null && !details.getStrIngredient5().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient5());
         }
-        if (meal.getStrIngredient6() != null && !meal.getStrIngredient6().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient6());
+        if (details.getStrIngredient6() != null && !details.getStrIngredient6().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient6());
         }
-        if (meal.getStrIngredient7() != null && !meal.getStrIngredient7().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient7());
+        if (details.getStrIngredient7() != null && !details.getStrIngredient7().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient7());
         }
-        if (meal.getStrIngredient8() != null && !meal.getStrIngredient8().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient8());
+        if (details.getStrIngredient8() != null && !details.getStrIngredient8().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient8());
         }
-        if (meal.getStrIngredient9() != null && !meal.getStrIngredient9().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient9());
+        if (details.getStrIngredient9() != null && !details.getStrIngredient9().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient9());
         }
-        if (meal.getStrIngredient10() != null &&!meal.getStrIngredient10().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient10());
+        if (details.getStrIngredient10() != null &&!details.getStrIngredient10().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient10());
         }
-        if (meal.getStrIngredient11() != null &&!meal.getStrIngredient11().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient11());
+        if (details.getStrIngredient11() != null &&!details.getStrIngredient11().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient11());
         }
-        if (meal.getStrIngredient12() != null &&!meal.getStrIngredient12().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient12());
+        if (details.getStrIngredient12() != null &&!details.getStrIngredient12().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient12());
         }
-        if (meal.getStrIngredient13() != null &&!meal.getStrIngredient13().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient13());
+        if (details.getStrIngredient13() != null &&!details.getStrIngredient13().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient13());
         }
-        if (meal.getStrIngredient14() != null &&!meal.getStrIngredient14().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient14());
+        if (details.getStrIngredient14() != null &&!details.getStrIngredient14().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient14());
         }
-        if (meal.getStrIngredient15() != null &&!meal.getStrIngredient15().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient15());
+        if (details.getStrIngredient15() != null &&!details.getStrIngredient15().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient15());
         }
-        if (meal.getStrIngredient16() != null && !meal.getStrIngredient16().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient16());
+        if (details.getStrIngredient16() != null && !details.getStrIngredient16().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient16());
         }
-        if (meal.getStrIngredient17() != null && !meal.getStrIngredient17().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient17());
+        if (details.getStrIngredient17() != null && !details.getStrIngredient17().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient17());
         }
-        if (meal.getStrIngredient18() != null && !meal.getStrIngredient18().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient18());
+        if (details.getStrIngredient18() != null && !details.getStrIngredient18().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient18());
         }
-        if (meal.getStrIngredient19() != null && !meal.getStrIngredient19().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient19());
-        }
-        if (meal.getStrIngredient20() != null && !meal.getStrIngredient20().isEmpty()) {
-            ingredients.append("\n \u2022 " + meal.getStrIngredient20());
+        if (details.getStrIngredient19() != null && !details.getStrIngredient19().isEmpty()) {
+            ingredients.append("\n \u2022 " + details.getStrIngredient19());
         }
 
 

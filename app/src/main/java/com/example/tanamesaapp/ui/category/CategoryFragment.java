@@ -27,6 +27,7 @@ import com.example.tanamesaapp.ui.detail.DetailActivity;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,6 +38,8 @@ import static com.google.android.gms.vision.L.TAG;
 
 public class CategoryFragment extends Fragment implements CategoryView {
 
+    public static final String EXTRA_PRODUCT = "product";
+    public static final String EXTRA_POSITION = "position";
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.progressBar)
@@ -97,12 +100,24 @@ public class CategoryFragment extends Fragment implements CategoryView {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-//        adapter.setOnItemClickListener((view, position) -> {
-//            TextView mealName = view.findViewById(R.id.mealName);
-//            Intent intent = new Intent(getActivity(), DetailActivity.class);
-//            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName.getText().toString());
-//            startActivity(intent);
-//        });
+        adapter.setOnItemClickListener((view, position) -> {
+
+//            mealName = mealName.replace(" ","%20");
+//            Log.w(TAG, "setProducts: " + mealName );
+////            Intent intent = new Intent(getActivity(), DetailActivity.class);
+////            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName);
+////            startActivity(intent);
+
+            TextView mealN = view.findViewById(R.id.mealName);
+            String mealName = mealN.getText().toString();
+            TextView mealI = view.findViewById(R.id.idMeal);
+            String mealId = mealI.getText().toString();
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName);
+            intent.putExtra(HomeActivity.EXTRA_ID, mealId);
+            startActivity(intent);
+        });
+
     }
 
     @Override
