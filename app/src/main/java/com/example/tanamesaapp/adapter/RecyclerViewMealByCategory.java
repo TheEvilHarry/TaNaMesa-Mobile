@@ -46,6 +46,7 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
 
         String strMealName = products.get(i).getStrMeal();
         viewHolder.mealName.setText(strMealName);
+        viewHolder.idMeal.setText( products.get(i).getIdMeal());
     }
 
 
@@ -59,6 +60,10 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         ImageView mealThumb;
         @BindView(R.id.mealName)
         TextView mealName;
+        @BindView(R.id.idMeal)
+        TextView idMeal;
+
+
         RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
