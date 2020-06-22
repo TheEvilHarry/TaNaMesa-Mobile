@@ -54,6 +54,7 @@ public class ReaderPage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 intent.putExtra("tableNumber", "8");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
+                MainActivity.table = "8";
 
                 finish();
                 startActivity(intent);
