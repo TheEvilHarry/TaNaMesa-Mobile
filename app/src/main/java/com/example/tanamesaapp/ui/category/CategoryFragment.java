@@ -112,9 +112,12 @@ public class CategoryFragment extends Fragment implements CategoryView {
             String mealName = mealN.getText().toString();
             TextView mealI = view.findViewById(R.id.idMeal);
             String mealId = mealI.getText().toString();
+            TextView category = view.findViewById(R.id.idCategory);
+            String categoryIndex = category.getText().toString();
             Intent intent = new Intent(getActivity(), DetailActivity.class);
             intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName);
             intent.putExtra(HomeActivity.EXTRA_ID, mealId);
+            intent.putExtra(HomeActivity.EXTRA_CATEGORY, categoryIndex);
             startActivity(intent);
         });
 

@@ -27,10 +27,12 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivty";
     private Button button;
     private TextView tableText;
     private TextView restaurantText;
     private DatabaseReference db;
+    public static String table;
 
 
     @Override
@@ -42,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String tableNumber = intent.getStringExtra("tableNumber");
+        table = tableNumber;
+        Log.w(TAG, "tua mae: " + tableNumber );
         String restaurantName = intent.getStringExtra("restaurantName");
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         button = findViewById(R.id.button);
         tableText = findViewById(R.id.tableText);
-        tableText.setText(tableText.getText() + " " + tableNumber);
         restaurantText = findViewById(R.id.restaurantText);
 
         // Passing each menu ID as a set of Ids because each

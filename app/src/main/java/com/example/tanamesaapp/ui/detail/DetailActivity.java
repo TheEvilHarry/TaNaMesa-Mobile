@@ -7,8 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.tanamesaapp.MainActivity;
 import com.example.tanamesaapp.ar.HelloArActivity;
 import com.example.tanamesaapp.models.Details;
+import com.example.tanamesaapp.models.Order;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -27,6 +29,8 @@ import android.widget.Toast;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.models.Meals;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +40,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.example.tanamesaapp.ui.detail.DetailView;
+
+import java.util.Date;
 
 import static com.google.android.gms.vision.L.TAG;
 
@@ -226,7 +232,11 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             builder.setPositiveButton("Confirmo", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getApplicationContext(), "Seu pedido foi encaminhado para o sistema! Obrigado", Toast.LENGTH_LONG)
+                    DatabaseReference db;
+                    db = FirebaseDatabase.getInstance().getReference("app/Orders");
+                    Order order = new Order(MainActivity.table, getIntent().getStringExtra(HomeActivity.EXTRA_ID), getIntent().getStringExtra(HomeActivity.EXTRA_CATEGORY), new Date());
+                    db.child(MainActivity.table).push().setValue(order);
+                    Toast.makeText(getApplicationContext(), "Mesa : " + MainActivity.table + "\nSeu pedido foi encaminhado para o sistema! Obrigado", Toast.LENGTH_LONG)
                             .show();
                     finish();
                 }
