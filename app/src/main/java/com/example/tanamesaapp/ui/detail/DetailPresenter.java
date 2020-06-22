@@ -37,18 +37,14 @@ public class DetailPresenter {
 
         String URL = "app/Details/" + mealId;
         db = FirebaseDatabase.getInstance().getReference(URL);
-        List<Details> detailsList = new ArrayList<>();
 
         db.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
-                    Details details = objSnapshot.getValue(Details.class);
-                    detailsList.add(details);
-                }
+                Details details = dataSnapshot.getValue(Details.class);
                 view.hideLoading();
-                view.setDetails(detailsList.get(0));
+                view.setDetails(details);
             }
 
             @Override
