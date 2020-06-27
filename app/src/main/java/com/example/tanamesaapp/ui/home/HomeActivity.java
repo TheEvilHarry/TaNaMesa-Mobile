@@ -33,6 +33,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     public static final String EXTRA_POSITION = "position";
     public static final String EXTRA_DETAIL = "detail";
     public static final String EXTRA_ID = "ID";
+    public static final String EXTRA_PRICE = "price";
+    public static final String EXTRA_URL = "url";
 
     @BindView(R.id.viewPagerHeader) ViewPager viewPagerMeal;
     @BindView(R.id.recyclerCategory) RecyclerView recyclerViewCategory;
@@ -50,9 +52,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     }
 
     @Override
-    public void showLoading() {
-        findViewById(R.id.shimmerCategory).setVisibility(View.VISIBLE);
-    }
+    public void showLoading() { findViewById(R.id.shimmerCategory).setVisibility(View.VISIBLE); }
 
     @Override
     public void hideLoading() {

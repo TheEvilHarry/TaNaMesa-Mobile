@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.tanamesaapp.MainActivity;
+import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.adapter.RecyclerViewMealByCategory;
@@ -102,22 +104,24 @@ public class CategoryFragment extends Fragment implements CategoryView {
 
         adapter.setOnItemClickListener((view, position) -> {
 
-//            mealName = mealName.replace(" ","%20");
-//            Log.w(TAG, "setProducts: " + mealName );
-////            Intent intent = new Intent(getActivity(), DetailActivity.class);
-////            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName);
-////            startActivity(intent);
-
             TextView mealN = view.findViewById(R.id.mealName);
             String mealName = mealN.getText().toString();
             TextView mealI = view.findViewById(R.id.idMeal);
             String mealId = mealI.getText().toString();
             TextView category = view.findViewById(R.id.idCategory);
             String categoryIndex = category.getText().toString();
+            TextView priceI = view.findViewById(R.id.idPrice);
+            String price = priceI.getText().toString();
+            TextView urlI = view.findViewById(R.id.idURL);
+            String url = urlI.getText().toString();
+
+
             Intent intent = new Intent(getActivity(), DetailActivity.class);
-            intent.putExtra(HomeActivity.EXTRA_DETAIL, mealName);
-            intent.putExtra(HomeActivity.EXTRA_ID, mealId);
-            intent.putExtra(HomeActivity.EXTRA_CATEGORY, categoryIndex);
+            intent.putExtra(MainActivity.EXTRA_DETAIL, mealName);
+            intent.putExtra(MainActivity.EXTRA_ID, mealId);
+            intent.putExtra(MainActivity.EXTRA_CATEGORY, categoryIndex);
+            intent.putExtra(MainActivity.EXTRA_URL, url);
+            intent.putExtra(MainActivity.EXTRA_PRICE, price);
             startActivity(intent);
         });
 

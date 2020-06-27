@@ -62,6 +62,14 @@
             android:id="@+id/idCategory"
             android:layout_width="0dp"
             android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/idPrice"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/idURL"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

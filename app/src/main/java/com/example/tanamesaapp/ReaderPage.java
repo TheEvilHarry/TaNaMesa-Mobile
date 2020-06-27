@@ -51,8 +51,8 @@ public class ReaderPage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainPage.class);
-                intent.putExtra("tableNumber", "8");
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("tableNumber", "7");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
                 MainActivity.table = "8";
 
@@ -108,7 +108,7 @@ public class ReaderPage extends AppCompatActivity {
                         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                         vibrator.vibrate(200);
                       
-                        Intent intent = new Intent(getApplicationContext(), MainPage.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("tableNumber", tableNumber);
                         intent.putExtra("restaurantName", restaurantName);
 

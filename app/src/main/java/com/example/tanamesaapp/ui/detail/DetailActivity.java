@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.tanamesaapp.MainActivity;
+import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.ar.HelloArActivity;
 import com.example.tanamesaapp.models.Details;
 import com.example.tanamesaapp.models.Order;
@@ -89,8 +90,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         setupActionBar();
 
         Intent intent = getIntent();
-        String mealName = intent.getStringExtra(HomeActivity.EXTRA_DETAIL);
-        String mealId = intent.getStringExtra(HomeActivity.EXTRA_ID);
+        String mealName = intent.getStringExtra(MainActivity.EXTRA_DETAIL);
+        String mealId = intent.getStringExtra(MainActivity.EXTRA_ID);
 
         Log.w(TAG, "[DETAILS] mealName : " + mealName);
         DetailPresenter presenter = new DetailPresenter(this);
@@ -226,7 +227,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             // setup the alert builder
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Confirmar Pedido");
-            builder.setMessage("Deseja mesmo pedir um "+ getIntent().getStringExtra(HomeActivity.EXTRA_DETAIL) + " ?");
+            builder.setMessage("Deseja mesmo pedir um "+ getIntent().getStringExtra(MainActivity.EXTRA_DETAIL) + " ?");
 
             // add the buttons
             builder.setPositiveButton("Confirmo", new DialogInterface.OnClickListener() {
@@ -234,9 +235,16 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
                 public void onClick(DialogInterface dialog, int which) {
                     DatabaseReference db;
                     db = FirebaseDatabase.getInstance().getReference("app/Orders");
-                    Order order = new Order(MainActivity.table, getIntent().getStringExtra(HomeActivity.EXTRA_ID), getIntent().getStringExtra(HomeActivity.EXTRA_CATEGORY), new Date());
+                    Order order = new Order(MainActivity.table,
+                            getIntent().getStringExtra(MainActivity.EXTRA_ID),
+                            getIntent().getStringExtra(MainActivity.EXTRA_DETAIL),
+                            getIntent().getStringExtra(MainActivity.EXTRA_CATEGORY),
+                            getIntent().getStringExtra(MainActivity.EXTRA_PRICE),
+                            getIntent().getStringExtra(MainActivity.EXTRA_URL),
+                            new Date());
+
                     db.child(MainActivity.table).push().setValue(order);
-                    Toast.makeText(getApplicationContext(), "Mesa : " + MainActivity.table + "\nSeu pedido foi encaminhado para o sistema! Obrigado", Toast.LENGTH_LONG)
+                    Toast.makeText(getApplicationContext(), "Seu pedido foi encaminhado para o sistema! Obrigado", Toast.LENGTH_LONG)
                             .show();
                     finish();
                 }
@@ -249,9 +257,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         });
 
         source.setOnClickListener(v -> {
-//            Intent intentSource = new Intent(Intent.ACTION_VIEW);
-//            intentSource.setData(Uri.parse(meal.getStrSource()));
-//            startActivity(intentSource);
             Intent ARIntent = new Intent(this, HelloArActivity.class);
             startActivity(ARIntent);
         });

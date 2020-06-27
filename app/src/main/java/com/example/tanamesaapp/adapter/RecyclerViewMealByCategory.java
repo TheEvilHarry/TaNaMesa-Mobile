@@ -48,6 +48,8 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         viewHolder.mealName.setText(strMealName);
         viewHolder.idMeal.setText( products.get(i).getIdMeal());
         viewHolder.idCategory.setText( products.get(i).getCategory());
+        viewHolder.idPrice.setText( products.get(i).getPrice());
+        viewHolder.idURL.setText( products.get(i).getStrMealThumb());
     }
 
 
@@ -65,6 +67,11 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         TextView idMeal;
         @BindView(R.id.idCategory)
         TextView idCategory;
+        @BindView(R.id.idPrice)
+        TextView idPrice;
+        @BindView(R.id.idURL)
+        TextView idURL;
+
 
 
         RecyclerViewHolder(@NonNull View itemView) {

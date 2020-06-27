@@ -1,6 +1,8 @@
 package com.example.tanamesaapp.adapter;
 
 import android.content.Context;
+
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
@@ -26,7 +28,7 @@ public class RecyclerViewHomeAdapter extends RecyclerView.Adapter<RecyclerViewHo
     private Context context;
     private static ClickListener clickListener;
 
-    public RecyclerViewHomeAdapter(List<Category> categories, HomeActivity context) {
+    public RecyclerViewHomeAdapter(List<Category> categories, /*HomeActivity*/ FragmentActivity context) {
         this.categories = categories;
         this.context = context;
     }

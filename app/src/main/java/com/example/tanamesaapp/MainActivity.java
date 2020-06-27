@@ -2,22 +2,7 @@ package com.example.tanamesaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,52 +13,65 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivty";
-    private Button button;
-    private TextView tableText;
-    private TextView restaurantText;
-    private DatabaseReference db;
+    public static final String EXTRA_CATEGORY = "category";
+    public static final String EXTRA_POSITION = "position";
+    public static final String EXTRA_DETAIL = "detail";
+    public static final String EXTRA_ID = "ID";
+    public static final String EXTRA_PRICE = "price";
+    public static final String EXTRA_URL = "url";
     public static String table;
+    public static String restaurantName;
 
+
+    public static void setTable(String table) {
+        MainActivity.table = table;
+    }
+
+    public static void setRestaurantName(String restaurantName) {
+        MainActivity.restaurantName = restaurantName;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Setup de appbar, toolbar e navbar
         Toolbar toolbar = findViewById(R.id.mp_actionbar);
         setSupportActionBar(toolbar);
-
-        Intent intent = getIntent();
-        String tableNumber = intent.getStringExtra("tableNumber");
-        table = tableNumber;
-        Log.w(TAG, "tua mae: " + tableNumber );
-        String restaurantName = intent.getStringExtra("restaurantName");
-
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        button = findViewById(R.id.button);
-        tableText = findViewById(R.id.tableText);
-        restaurantText = findViewById(R.id.restaurantText);
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+
+        Intent intent = getIntent();
+        setTable(intent.getStringExtra("tableNumber"));
+        setRestaurantName(intent.getStringExtra("restaurantName"));
+        int screenIndex = getScreenIndex(intent);
+
         //Método para mudar a view
-        navController.navigate(R.id.navigation_notifications);
+        navController.navigate(screenIndex);
     }
 
-    //COLOQUEM AQUI A ID DA MESA DO VIVENTE
-    public void openMainPage(View v){
-        Log.d("TAG", "openMainPage: SOCORRO");
-        int id=0;
-        Intent intent = new Intent(this,MainPage.class);
-        intent.putExtra("ID",id);
-        startActivity(intent);
-    }
+    private int getScreenIndex(Intent intent) {
+        int index;
+        switch (intent.getIntExtra("indexNavbar", 1)){
+            case 1:
+                index =  R.id.navigation_home;
+                break;
+            case 2:
+                index = R.id.navigation_dashboard;
+                break;
+            case 3:
+                index = R.id.navigation_notifications;
+                break;
+            default:
+                index = R.id.navigation_home;
+        }
 
+        return index;
+    }
 }

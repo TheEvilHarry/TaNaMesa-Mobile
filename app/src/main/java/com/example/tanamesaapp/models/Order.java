@@ -21,19 +21,38 @@ public class Order {
     @Expose
     private String  productId;
 
+    @SerializedName("productName")
+    @Expose
+    private String  productName;
+
     @SerializedName("productCategoryId")
     @Expose
     private String  productCategoryId;
+
+    @SerializedName("price")
+    @Expose
+    private String  price;
+
+    @SerializedName("thumbURL")
+    @Expose
+    private String  thumbURL;
 
     @SerializedName("date")
     @Expose
     private Date date;
 
-    public Order(String table, String productId, String productCategoryId, Date date) {
+    public Order(String table, String productId, String productName, String productCategoryId, String price, String thumbURL, Date date) {
         this.table = table;
         this.productId = productId;
+        this.productName = productName;
         this.productCategoryId = productCategoryId;
+        this.price = price;
+        this.thumbURL = thumbURL;
         this.date = date;
+    }
+
+    public Order() {
+
     }
 
     public List<Product> getOrders() {
@@ -54,5 +73,43 @@ public class Order {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getPrice() { return price; }
+
+    public String getThumbURL() { return thumbURL; }
+
+    public String getProductName() { return productName; }
+
+    public void setOrders(List<Product> orders) {
+        this.orders = orders;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductCategoryId(String productCategoryId) {
+        this.productCategoryId = productCategoryId;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setThumbURL(String thumbURL) {
+        this.thumbURL = thumbURL;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

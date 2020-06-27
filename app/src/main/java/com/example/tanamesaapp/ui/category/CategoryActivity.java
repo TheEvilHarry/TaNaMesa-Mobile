@@ -9,13 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.tanamesaapp.MainActivity;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.adapter.ViewPagerCategoryAdapter;
-import com.example.tanamesaapp.models.Categories;
 import com.example.tanamesaapp.models.Category;
-import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.tabs.TabLayout;
-import com.example.tanamesaapp.ui.home.HomeActivity;
 
 import java.util.List;
 
@@ -47,8 +45,8 @@ public class CategoryActivity extends AppCompatActivity {
     private void initIntent() {
         Intent intent = getIntent();
         List<Category> categories =
-                (List<Category>) intent.getSerializableExtra(HomeActivity.EXTRA_CATEGORY);
-        int position = intent.getIntExtra(HomeActivity.EXTRA_POSITION, 0);
+                (List<Category>) intent.getSerializableExtra(MainActivity.EXTRA_CATEGORY);
+        int position = intent.getIntExtra(MainActivity.EXTRA_POSITION, 0);
 
         ViewPagerCategoryAdapter adapter = new ViewPagerCategoryAdapter(
                 getSupportFragmentManager(),

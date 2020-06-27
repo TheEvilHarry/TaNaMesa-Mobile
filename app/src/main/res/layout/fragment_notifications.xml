@@ -10,12 +10,6 @@
     android:background="@android:color/white"
     android:clickable="true">
 
-    <include
-        android:id="@+id/mp_actionbar"
-        layout="@layout/top_actionbar"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="61dp" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="fill_parent"
@@ -29,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.885" />
 
     <ListView
         android:id="@+id/orderListView"
