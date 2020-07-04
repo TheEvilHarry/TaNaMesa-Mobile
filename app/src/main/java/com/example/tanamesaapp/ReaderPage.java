@@ -51,7 +51,7 @@ public class ReaderPage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
                 intent.putExtra("tableNumber", "7");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
                 MainActivity.table = "8";

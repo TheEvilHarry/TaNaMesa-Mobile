@@ -53,8 +53,6 @@ public class HomeFragment extends Fragment implements HomeView {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Log.w(TAG, "GOODBYE OMEGRAGMENT: ");
-
         ButterKnife.bind(this, view);
         return view;
     }

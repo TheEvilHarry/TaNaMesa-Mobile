@@ -24,9 +24,26 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
 
     public void showMenu(View v){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("indexNavbar", 1);
+        intent.putExtra("tableNumber", "7");
         finish();
         startActivity(intent);
-        intent.putExtra("indexNavbar", 1);
+    }
+
+    public void showBill(View v){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("indexNavbar", 3);
+        intent.putExtra("tableNumber", "7");
+        finish();
+        startActivity(intent);
+    }
+
+    public void showDashboard(View v){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("indexNavbar", 2);
+        intent.putExtra("tableNumber", "7");
+        finish();
+        startActivity(intent);
     }
 
     @Override
