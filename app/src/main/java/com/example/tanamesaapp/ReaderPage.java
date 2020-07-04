@@ -45,15 +45,16 @@ public class ReaderPage extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480).build();
+                .setRequestedPreviewSize(600, 720).build();
 
         button = findViewById(R.id.simulate);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("tableNumber", "8");
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
+                intent.putExtra("tableNumber", "7");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
+                MainActivity.table = "8";
 
                 finish();
                 startActivity(intent);
