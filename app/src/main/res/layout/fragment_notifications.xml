@@ -6,9 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment"
-    android:layout_marginTop="10dp"
     android:background="@android:color/white"
     android:clickable="true">
+
+    <include
+        android:id="@+id/mp_actionbar"
+        layout="@layout/top_actionbar"/>
 
     <Button
         android:id="@+id/button2"
@@ -29,12 +32,8 @@
         android:id="@+id/orderListView"
         android:layout_width="match_parent"
         android:layout_height="475dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/mp_actionbar"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tv"
