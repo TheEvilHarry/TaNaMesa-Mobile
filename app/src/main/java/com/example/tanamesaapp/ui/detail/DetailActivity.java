@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.tanamesaapp.MainActivity;
@@ -15,6 +16,8 @@ import com.example.tanamesaapp.models.Order;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 import androidx.appcompat.widget.Toolbar;
 
@@ -43,6 +46,8 @@ import butterknife.ButterKnife;
 import com.example.tanamesaapp.ui.detail.DetailView;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.google.android.gms.vision.L.TAG;
 
@@ -80,6 +85,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     
     @BindView(R.id.source)
     TextView source;
+
+    Map<String, String> availableFoodsAR = fillMap();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,21 +116,10 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         }
     }
 
-    void setupColorActionBarIcon(Drawable favoriteItemColor) {
-        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if ((collapsingToolbarLayout.getHeight() + verticalOffset) < (2 * ViewCompat.getMinimumHeight(collapsingToolbarLayout))) {
-                if (toolbar.getNavigationIcon() != null)
-                    toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-                favoriteItemColor.mutate().setColorFilter(getResources().getColor(R.color.colorPrimary),
-                        PorterDuff.Mode.SRC_ATOP);
-
-            } else {
-                if (toolbar.getNavigationIcon() != null)
-                    toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
-                favoriteItemColor.mutate().setColorFilter(getResources().getColor(R.color.colorWhite),
-                        PorterDuff.Mode.SRC_ATOP);
-            }
-        });
+    private static Map<String, String> fillMap() {
+        Map<String,String> myMap = new HashMap<>();
+        myMap.put("52770", "JIBOIA");
+        return myMap;
     }
 
     @Override
@@ -153,6 +149,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void setDetails(Details details) {
         Picasso.get().load(details.getStrMealThumb()).into(mealThumb);
@@ -161,8 +158,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         priceValue.setText(details.getPrice());
         description.setText("Um " + details.getStrMeal() +" muito gostoso!");
         setupActionBar();
-
-        //===
 
         if (details.getStrIngredient1() != null && !details.getStrIngredient1().isEmpty()) {
             ingredients.append("\n \u2022 " + details.getStrIngredient1());
@@ -257,11 +252,23 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         });
 
         source.setOnClickListener(v -> {
-            Intent ARIntent = new Intent(this, HelloArActivity.class);
-            startActivity(ARIntent);
+            Log.w(TAG, "setDetails: " + getIntent().getStringExtra(MainActivity.EXTRA_ID) );
+            Log.w(TAG, "setDetails: " +  getIntent().getStringExtra(MainActivity.EXTRA_DETAIL));
+            Log.w(TAG, "setDetails: " + getIntent().getStringExtra(MainActivity.EXTRA_URL) );
+            String ARPath = availableFoodsAR.getOrDefault(getIntent().getStringExtra(MainActivity.EXTRA_ID), "" );
+            if (ARPath.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Sentimos muito, este prato ainda não possui modelo 3D para visualizar em Realide Aumentada!", Toast.LENGTH_LONG)
+                        .show();
+                Toast.makeText(getApplicationContext(), "Sentimos muito, este prato ainda não possui modelo 3D para visualizar em Realide Aumentada!", Toast.LENGTH_SHORT)
+                        .show();
+            }
+            else {
+                Log.w(TAG, "setDetails: suck it " + ARPath );
+                Intent ARIntent = new Intent(this, HelloArActivity.class);
+                ARIntent.putExtra("ARModelPath", "JIBOIA");
+                startActivity(ARIntent);
+            }
         });
-
-
     }
 
     @Override

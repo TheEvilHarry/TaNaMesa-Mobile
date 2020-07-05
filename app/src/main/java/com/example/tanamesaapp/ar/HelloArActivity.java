@@ -16,10 +16,12 @@
 
 package com.example.tanamesaapp.ar;
 
+import android.annotation.SuppressLint;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
+import com.example.tanamesaapp.MainActivity;
 import com.example.tanamesaapp.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -111,6 +113,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     Toolbar toolbar;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +123,11 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         initActionBar();
         displayRotationHelper = new DisplayRotationHelper(/*context=*/ this);
         mRotationDetector = new RotationGestureDetector(this);
+
+        String ARModelPath = getIntent().getStringExtra("ARModelPath");
+        Toast.makeText(getApplicationContext(), "ARModelPath : " + ARModelPath, Toast.LENGTH_LONG)
+                .show();
+
         // Set up tap listener.
         gestureDetector = new GestureDetector(this,
                 new GestureDetector.SimpleOnGestureListener() {
