@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,24 +18,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.tanamesaapp.MainActivity;
-import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
 import com.example.tanamesaapp.adapter.RecyclerViewMealByCategory;
-import com.example.tanamesaapp.models.Meals;
 import com.example.tanamesaapp.models.Product;
 import com.example.tanamesaapp.ui.detail.DetailActivity;
-import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.google.android.gms.vision.L.TAG;
 
 public class CategoryFragment extends Fragment implements CategoryView {
 

@@ -2,23 +2,17 @@ package com.example.tanamesaapp.ui.detail;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.tanamesaapp.MainActivity;
-import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.ar.HelloArActivity;
 import com.example.tanamesaapp.models.Details;
 import com.example.tanamesaapp.models.Order;
-import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
@@ -32,7 +26,6 @@ import android.widget.Toast;
 
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.Utils;
-import com.example.tanamesaapp.models.Meals;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -42,8 +35,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import com.example.tanamesaapp.ui.detail.DetailView;
 
 import java.util.Date;
 import java.util.HashMap;

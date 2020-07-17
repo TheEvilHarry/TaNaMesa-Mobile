@@ -63,10 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         setTable(intent.getStringExtra("tableNumber"));
         setRestaurantName(intent.getStringExtra("restaurantName"));
-        int screenIndex = getScreenIndex(intent);
 
         //Método para mudar a view
-        navController.navigate(screenIndex);
+        navController.navigate(R.id.navigation_dashboard);
 
         FloatingActionButton fab = findViewById(R.id.waiterButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Confirmo", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Aguarde que em breve garçom irá lhe ajudar em breve, obrigado!", Toast.LENGTH_LONG)
+                        Toast.makeText(getApplicationContext(), "Aguarde que em breve um garçom irá lhe ajudar em breve, obrigado!", Toast.LENGTH_LONG)
                                 .show();
                     }
                 });

@@ -1,6 +1,5 @@
 package com.example.tanamesaapp.ui.notifications;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,10 +18,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tanamesaapp.MainActivity;
-import com.example.tanamesaapp.MainPage;
 import com.example.tanamesaapp.R;
 import com.example.tanamesaapp.models.Order;
-import com.example.tanamesaapp.models.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
