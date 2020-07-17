@@ -9,17 +9,27 @@ import android.view.MenuItem;
 import android.view.View;
 import com.example.tanamesaapp.ui.home.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainPage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView menu;
+    private String tableNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = findViewById(R.id.mp_actionbar);
+        tableNumber = MainActivity.table;               //SETTING TABLE HERE
+        updateTableAvailability();
         setSupportActionBar(toolbar);
         setupUI();
 
+    }
+
+    private void updateTableAvailability(){
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("app/Tables/" + tableNumber);
+        db.child("available").setValue("false");
     }
 
     public void showMenu(View v){
