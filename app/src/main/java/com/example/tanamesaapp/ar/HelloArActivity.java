@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
+import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,7 +61,9 @@ import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationExceptio
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -102,7 +105,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private RotationGestureDetector mRotationDetector;
     private int mPtrCount = 0;
     private MotionEvent motionEvent;
-    private String objName = "models/AppleStrudel.obj", textureName = "models/AppleStrudel.jpg";
+    private String objName, textureName;
     private boolean isObjReplaced;
     private MyScaleGestures scaleGestureDetector;
 
@@ -112,6 +115,19 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    Map<String, Pair<String,String>> modelsProperties = fillMap();
+
+    private static Map<String, Pair<String,String>> fillMap() {
+        Map<String, Pair<String,String>> myMap = new HashMap<>();
+        myMap.put("AppleStrudel", new Pair("models/AppleStrudel.obj", "models/AppleStrudel.jpg" ));
+        return myMap;
+    }
+
+    private void setARModelProperties(String ARModelName) {
+        Pair <String,String> properties = modelsProperties.get(ARModelName);
+        objName = properties.first;
+        textureName = properties.second;
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -124,9 +140,11 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         displayRotationHelper = new DisplayRotationHelper(/*context=*/ this);
         mRotationDetector = new RotationGestureDetector(this);
 
-        String ARModelPath = getIntent().getStringExtra("ARModelPath");
-        Toast.makeText(getApplicationContext(), "ARModelPath : " + ARModelPath, Toast.LENGTH_LONG)
-                .show();
+        String ARModelName = getIntent().getStringExtra("ARModelName");
+        setARModelProperties(ARModelName);
+
+
+
 
         // Set up tap listener.
         gestureDetector = new GestureDetector(this,
@@ -193,6 +211,35 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
 
         installRequested = false;
+
+        findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index++;
+                int size = objectNames.size();
+                if (index > size - 1) {
+                    index = 0;
+                }
+                String name = objectNames.get(index);
+                objName = "models/" + name + ".obj";
+                textureName = "models/" + name + ".jpg";
+                isObjReplaced = true;
+            }
+        });
+
+        findViewById(R.id.zoomIn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GlobalClass.scaleFactor += 0.10f;
+            }
+        });
+
+        findViewById(R.id.zoomOut).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GlobalClass.scaleFactor -= 0.10f;
+            }
+        });
     }
 
     private void initActionBar() {

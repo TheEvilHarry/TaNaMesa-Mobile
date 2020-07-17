@@ -118,7 +118,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     private static Map<String, String> fillMap() {
         Map<String,String> myMap = new HashMap<>();
-        myMap.put("52770", "JIBOIA");
+        myMap.put("52770", "AppleStrudel");
         return myMap;
     }
 
@@ -265,7 +265,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             else {
                 Log.w(TAG, "setDetails: suck it " + ARPath );
                 Intent ARIntent = new Intent(this, HelloArActivity.class);
-                ARIntent.putExtra("ARModelPath", "JIBOIA");
+                ARIntent.putExtra("ARModelName", ARPath);
                 startActivity(ARIntent);
             }
         });
