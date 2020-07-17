@@ -1,14 +1,27 @@
 package com.example.tanamesaapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import com.example.tanamesaapp.models.Order;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +67,32 @@ public class MainActivity extends AppCompatActivity {
 
         //Método para mudar a view
         navController.navigate(screenIndex);
+
+        FloatingActionButton fab = findViewById(R.id.waiterButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // setup the alert builder
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Garçom");
+                builder.setMessage("Deseja mesmo chamar um garçom ?");
+
+                // add the buttons
+                builder.setPositiveButton("Confirmo", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Aguarde que em breve garçom irá lhe ajudar em breve, obrigado!", Toast.LENGTH_LONG)
+                                .show();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", null);
+
+                // create and show the alert dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     private int getScreenIndex(Intent intent) {

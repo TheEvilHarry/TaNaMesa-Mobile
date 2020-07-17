@@ -52,9 +52,8 @@ public class ReaderPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainPage.class);
-                intent.putExtra("tableNumber", "7");
+                intent.putExtra("tableNumber", "11");
                 intent.putExtra("restaurantName", "Ponto UFRGS");
-                MainActivity.table = "8";
 
                 finish();
                 startActivity(intent);

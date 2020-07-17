@@ -59,7 +59,6 @@
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="@string/search_your_recipes"
                     android:textColor="@color/colorPrimaryLight" />
             </androidx.cardview.widget.CardView>
 

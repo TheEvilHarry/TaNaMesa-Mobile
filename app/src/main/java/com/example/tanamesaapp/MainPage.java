@@ -25,7 +25,7 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     public void showMenu(View v){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("indexNavbar", 1);
-        intent.putExtra("tableNumber", "7");
+        intent.putExtra("tableNumber", "11");
         finish();
         startActivity(intent);
     }
@@ -33,7 +33,7 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     public void showBill(View v){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("indexNavbar", 3);
-        intent.putExtra("tableNumber", "7");
+        intent.putExtra("tableNumber", "11");
         finish();
         startActivity(intent);
     }
@@ -41,7 +41,7 @@ public class MainPage extends AppCompatActivity implements BottomNavigationView.
     public void showDashboard(View v){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("indexNavbar", 2);
-        intent.putExtra("tableNumber", "7");
+        intent.putExtra("tableNumber", "11");
         finish();
         startActivity(intent);
     }

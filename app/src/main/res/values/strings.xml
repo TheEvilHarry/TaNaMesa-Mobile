@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">TaNaMesaApp</string>
     <string name="title_home">Cardápio</string>
-    <string name="title_dashboard">Página Inicial</string>
+    <string name="title_dashboard">Instruções</string>
     <string name="title_notifications">Conta</string>
 
 
-    <string name="search_your_recipes">Search Your Recipes…</string>
     <string name="meal_categories">Categorias</string>
     <string name="category">Categoria</string>
     <string name="price">Preço</string>
