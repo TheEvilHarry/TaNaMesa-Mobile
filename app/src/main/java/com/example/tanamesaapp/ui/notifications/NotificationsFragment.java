@@ -1,25 +1,32 @@
 package com.example.tanamesaapp.ui.notifications;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tanamesaapp.MainActivity;
 import com.example.tanamesaapp.R;
+import com.example.tanamesaapp.ReaderPage;
 import com.example.tanamesaapp.models.Order;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +47,6 @@ public class NotificationsFragment extends Fragment {
 
     Context context;
     ListView listView;
-    String titles[] = {"Pizza Macarena"};
     private DatabaseReference db;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,10 +58,10 @@ public class NotificationsFragment extends Fragment {
         Log.w(TAG, "GOODBYE NOTIFICATIONS: ");
 //        String data = String.valueOf(((MainAc)getActivity()).getTableID());
 
-        TextView textView = root.findViewById(R.id.tv);
+        TextView priceView = root.findViewById(R.id.price);
         String tableNumber = ((MainActivity) getActivity()).table;
         Log.w(TAG, "onCreateView: MAGRO " + tableNumber);
-        textView.setText("Total a mamar ");
+        priceView.setText("Total A Pagar: R$ ");
 
         String URL = "app/Orders/" + tableNumber;
         Log.w(TAG, "onCreateView: MAGRO " + URL);
@@ -74,7 +80,7 @@ public class NotificationsFragment extends Fragment {
                 }
 
                 fillListView(orders, listView);
-                textView.setText( textView.getText() + amount);
+                priceView.setText(amount);
             }
 
             @Override
@@ -87,6 +93,30 @@ public class NotificationsFragment extends Fragment {
             public void onChanged(@Nullable String s) {
 
             }
+        });
+
+        Button closeAccountButton = root.findViewById(R.id.closeAccount);
+        closeAccountButton.setOnClickListener(view -> {
+
+            // setup the alert builder
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Deseja Fechar A Conta?");
+            builder.setMessage("Sua mesa SERÁ LIBERADA e você NÃO PODERÁ FAZER MAIS PEDIDOS! O garçom irá em seguida lhe cobrar.");
+
+            // add the buttons
+            builder.setPositiveButton("Confirmo", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getContext(), "Obrigado pela visita e esperamos vê-lo novamente! Até mais", Toast.LENGTH_LONG)
+                            .show();
+                    closeAccount();
+                }
+            });
+            builder.setNegativeButton("Cancelar", null);
+
+            // create and show the alert dialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
 
         return root;
@@ -112,6 +142,17 @@ public class NotificationsFragment extends Fragment {
 
         MyAdapter adapter = new MyAdapter(context, productNames, urls, prices);
         listView.setAdapter(adapter);
+    }
+
+    private void closeAccount() {
+        db = FirebaseDatabase.getInstance().getReference("app/Tables/");
+        db.child(MainActivity.table).child("available").setValue(true);
+        db.child(MainActivity.table).child("needingWaiter").setValue(false);
+        db.child(MainActivity.table).child("waitingOrder").setValue(false);
+
+        Intent intent = new Intent(getActivity(), ReaderPage.class);
+        getActivity().finish();
+        startActivity(intent);
     }
 }
 

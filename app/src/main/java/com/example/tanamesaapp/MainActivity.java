@@ -3,6 +3,7 @@ package com.example.tanamesaapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -10,9 +11,13 @@ import com.example.tanamesaapp.models.Order;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -21,7 +26,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import static com.google.android.gms.vision.L.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,10 +43,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "url";
     public static String table;
     public static String restaurantName;
+    DatabaseReference db;
 
 
-    public static void setTable(String table) {
+
+    private void setTable(String table) {
         MainActivity.table = table;
+        db = FirebaseDatabase.getInstance().getReference("app/Tables/");
+        db.child(this.table).child("available").setValue(false);
     }
 
     public static void setRestaurantName(String restaurantName) {
@@ -83,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(), "Aguarde que em breve um garçom irá lhe ajudar em breve, obrigado!", Toast.LENGTH_LONG)
                                 .show();
+                        callWaiter();
                     }
                 });
                 builder.setNegativeButton("Cancelar", null);
@@ -111,5 +125,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return index;
+    }
+
+    private void callWaiter() {
+        Log.w(TAG, "callWaiter: GARÇOMMMM ");
+        db = FirebaseDatabase.getInstance().getReference("app/Tables/");
+        db.child(this.table).child("needingWaiter").setValue(true);
     }
 }

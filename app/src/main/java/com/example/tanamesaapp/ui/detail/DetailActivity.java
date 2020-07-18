@@ -232,6 +232,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
                     db.child(MainActivity.table).push().setValue(order);
                     Toast.makeText(getApplicationContext(), "Seu pedido foi encaminhado para o sistema! Obrigado", Toast.LENGTH_LONG)
                             .show();
+                    db = FirebaseDatabase.getInstance().getReference("app/Tables/");
+                    db.child(MainActivity.table).child("waitingOrder").setValue(true);
                     finish();
                 }
             });

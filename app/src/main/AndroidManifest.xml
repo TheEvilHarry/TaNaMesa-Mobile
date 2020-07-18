@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CloseAccount"></activity>
-        <activity android:name=".CallWaiter"></activity>
         <activity android:name=".OrderConfirmation" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
