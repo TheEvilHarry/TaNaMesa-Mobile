@@ -116,11 +116,25 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     Toolbar toolbar;
 
     Map<String, Pair<String,String>> modelsProperties = fillMap();
+    Map<String,Float> modelsScale = fillScaleMap();
+
+    private static Map<String, Float> fillScaleMap() {
+        Map<String, Float> myMap = new HashMap<>();
+        myMap.put("Banana", 0.79999995f);
+        myMap.put("Apri", 1.0f);
+        myMap.put("AppleStrudel", 0.5999999f);
+        myMap.put("Santa", 0.9f);
+
+        return myMap;
+    }
 
     private static Map<String, Pair<String,String>> fillMap() {
         Map<String, Pair<String,String>> myMap = new HashMap<>();
+        myMap.put("Banana", new Pair("models/banana.obj", "models/banana.jpg"));
+        myMap.put("Apri", new Pair("models/apri.obj", "models/apri.png" ));
         myMap.put("AppleStrudel", new Pair("models/AppleStrudel.obj", "models/AppleStrudel.jpg" ));
-        myMap.put("AppleStrudel", new Pair("models/apri.obj", "models/apri.png" ));
+        myMap.put("Santa", new Pair("models/santa.obj", "models/santa.jpg" ));
+
         return myMap;
     }
 
@@ -143,6 +157,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
         String ARModelName = getIntent().getStringExtra("ARModelName");
         setARModelProperties(ARModelName);
+        GlobalClass.scaleFactor = modelsScale.get(ARModelName);
 
 
 

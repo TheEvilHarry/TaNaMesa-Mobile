@@ -109,7 +109,10 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     private static Map<String, String> fillMap() {
         Map<String,String> myMap = new HashMap<>();
-        myMap.put("52770", "AppleStrudel");
+        myMap.put("1", "Banana");
+        myMap.put("2", "Apri");
+        myMap.put("3", "AppleStrudel");
+        myMap.put("4", "Santa");
         return myMap;
     }
 
@@ -248,7 +251,9 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             Log.w(TAG, "setDetails: " + getIntent().getStringExtra(MainActivity.EXTRA_ID) );
             Log.w(TAG, "setDetails: " +  getIntent().getStringExtra(MainActivity.EXTRA_DETAIL));
             Log.w(TAG, "setDetails: " + getIntent().getStringExtra(MainActivity.EXTRA_URL) );
+
             String ARPath = availableFoodsAR.getOrDefault(getIntent().getStringExtra(MainActivity.EXTRA_ID), "" );
+
             if (ARPath.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Sentimos muito, este prato ainda não possui modelo 3D para visualizar em Realide Aumentada!", Toast.LENGTH_LONG)
                         .show();

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "url";
     public static String table;
     public static String restaurantName;
+    static public boolean open = false;
     DatabaseReference db;
 
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        MainActivity.open = true;
         //Setup de appbar, toolbar e navbar
         Toolbar toolbar = findViewById(R.id.mp_actionbar);
         setSupportActionBar(toolbar);

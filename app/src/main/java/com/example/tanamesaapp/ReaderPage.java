@@ -97,23 +97,30 @@ public class ReaderPage extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
                 final String qrValue;
-                if (qrCodes.size() != 0) {
+                if (qrCodes.size() != 0 && !MainActivity.open) {
                     qrValue = qrCodes.valueAt(0).displayValue;
                     if (!qrValue.equals(ReaderPage.oldqrValue)) {
+                        try {
+                            String[] splittedQRText = qrValue.split("/");
+                            if (splittedQRText.length != 3){
+                                throw new Exception();
+                            }
+                            String restaurantName = splittedQRText[1].replace("-"," ");
+                            String tableNumber = splittedQRText[2];
 
-                        String[] splittedQRText = qrValue.split("/");
-                        String restaurantName = splittedQRText[1].replace("-"," ");
-                        String tableNumber = splittedQRText[2];
+                            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                            vibrator.vibrate(200);
 
-                        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                        vibrator.vibrate(200);
-                      
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("tableNumber", tableNumber);
-                        intent.putExtra("restaurantName", restaurantName);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("tableNumber", tableNumber);
+                            intent.putExtra("restaurantName", restaurantName);
 
-                        finish();
-                        startActivity(intent);
+                            finish();
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }
             }
