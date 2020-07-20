@@ -96,8 +96,9 @@ public class ReaderPage extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                final String qrValue = qrCodes.valueAt(0).displayValue;
+                final String qrValue;
                 if (qrCodes.size() != 0) {
+                    qrValue = qrCodes.valueAt(0).displayValue;
                     if (!qrValue.equals(ReaderPage.oldqrValue)) {
 
                         String[] splittedQRText = qrValue.split("/");

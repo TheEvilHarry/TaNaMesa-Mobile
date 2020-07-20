@@ -25,12 +25,6 @@ public class MyScaleGestures implements View.OnTouchListener, ScaleGestureDetect
 
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-
-        scaleFactor *= detector.getScaleFactor();
-
-        scaleFactor = (scaleFactor < 1 ? 1 : scaleFactor);
-        scaleFactor = ((float) ((int) (scaleFactor * 100))) / 100;
-        GlobalClass.scaleFactor = scaleFactor;
         return true;
     }
 

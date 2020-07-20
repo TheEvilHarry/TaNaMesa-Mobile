@@ -55,16 +55,15 @@ public class NotificationsFragment extends Fragment {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        Log.w(TAG, "GOODBYE NOTIFICATIONS: ");
 //        String data = String.valueOf(((MainAc)getActivity()).getTableID());
 
         TextView priceView = root.findViewById(R.id.price);
         String tableNumber = ((MainActivity) getActivity()).table;
-        Log.w(TAG, "onCreateView: MAGRO " + tableNumber);
-        priceView.setText("Total A Pagar: R$ ");
+
+        TextView tableView = root.findViewById(R.id.tableText);
+        tableView.setText("Mesa: " + tableNumber );
 
         String URL = "app/Orders/" + tableNumber;
-        Log.w(TAG, "onCreateView: MAGRO " + URL);
         db = FirebaseDatabase.getInstance().getReference(URL);
         List<Order> orders = new ArrayList<>();
         listView = root.findViewById(R.id.orderListView);
@@ -126,7 +125,7 @@ public class NotificationsFragment extends Fragment {
         String productNames[] = new String[orders.size()];
         String urls[] = new String[orders.size()];
         String prices[] = new String[orders.size()];
-        float amount = 0;
+        float amount = 0f;
 
         for (int i = 0; i < orders.size(); i++) {
             productNames[i] = orders.get(i).getProductName();
@@ -137,8 +136,13 @@ public class NotificationsFragment extends Fragment {
             amount += price;
         }
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        NotificationsFragment.amount =  decimalFormat.format(amount);
+        if (amount > 0) {
+            DecimalFormat decimalFormat = new DecimalFormat("#.00");
+            NotificationsFragment.amount =  decimalFormat.format(amount);
+        }
+        else {
+            NotificationsFragment.amount = String.valueOf(amount);
+        }
 
         MyAdapter adapter = new MyAdapter(context, productNames, urls, prices);
         listView.setAdapter(adapter);
@@ -149,6 +153,9 @@ public class NotificationsFragment extends Fragment {
         db.child(MainActivity.table).child("available").setValue(true);
         db.child(MainActivity.table).child("needingWaiter").setValue(false);
         db.child(MainActivity.table).child("waitingOrder").setValue(false);
+
+        db = FirebaseDatabase.getInstance().getReference("app/Orders/");
+        db.child(MainActivity.table).removeValue();
 
         Intent intent = new Intent(getActivity(), ReaderPage.class);
         getActivity().finish();

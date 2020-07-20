@@ -120,6 +120,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private static Map<String, Pair<String,String>> fillMap() {
         Map<String, Pair<String,String>> myMap = new HashMap<>();
         myMap.put("AppleStrudel", new Pair("models/AppleStrudel.obj", "models/AppleStrudel.jpg" ));
+        myMap.put("AppleStrudel", new Pair("models/apri.obj", "models/apri.png" ));
         return myMap;
     }
 
@@ -157,7 +158,6 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
 
                     @Override
                     public boolean onDoubleTap(MotionEvent e) {
-                        GlobalClass.scaleFactor += GlobalClass.scaleFactor;
                         String lg = "onDoubleTap:" + String.valueOf(GlobalClass.scaleFactor);
                         Log.d(TAG,  lg);
                         return true;
