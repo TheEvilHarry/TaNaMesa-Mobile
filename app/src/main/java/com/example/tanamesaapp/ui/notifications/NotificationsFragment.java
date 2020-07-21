@@ -158,6 +158,7 @@ public class NotificationsFragment extends Fragment {
         db.child(MainActivity.table).removeValue();
 
         Intent intent = new Intent(getActivity(), ReaderPage.class);
+        MainActivity.open = false;
         getActivity().finish();
         startActivity(intent);
     }

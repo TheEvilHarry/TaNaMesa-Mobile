@@ -8,6 +8,7 @@
     tools:context=".ReaderPage">
 
     <Button
+        android:visibility="gone"
         android:id="@+id/simulate"
         android:layout_width="168dp"
         android:layout_height="68dp"

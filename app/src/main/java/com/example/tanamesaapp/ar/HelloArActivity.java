@@ -108,7 +108,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
     private String objName, textureName;
     private boolean isObjReplaced;
     private MyScaleGestures scaleGestureDetector;
-
+    private boolean hasPlane = false;
     List<String> objectNames = Arrays.asList("AppleStrudel", "bunny", "santa","apple", "banana", "bunny", "santa");
     int index = 0;
 
@@ -317,7 +317,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             session.configure(config);
         }
 
-        showLoadingMessage();
+        showLoadingMessage("Procurando por superficies retas pra usar como mesa...");
         // Note that order matters - see the note in onPause(), the reverse applies here.
         session.resume();
         surfaceView.onResume();
@@ -495,7 +495,7 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             if (messageSnackbar != null) {
                 for (Plane plane : session.getAllTrackables(Plane.class)) {
                     if (plane.getType() == com.google.ar.core.Plane.Type.HORIZONTAL_UPWARD_FACING
-                            && plane.getTrackingState() == TrackingState.TRACKING) {
+                            && plane.getTrackingState() == TrackingState.TRACKING && !hasPlane) {
                         hideLoadingMessage();
                         break;
                     }
@@ -558,12 +558,12 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
         messageSnackbar.show();
     }
 
-    private void showLoadingMessage() {
+    private void showLoadingMessage(String message) {
         runOnUiThread(
                 new Runnable() {
                     @Override
                     public void run() {
-                        showSnackbarMessage("Searching for surfaces...", false);
+                        showSnackbarMessage(message, false);
                     }
                 });
     }
@@ -576,7 +576,8 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                         if (messageSnackbar != null) {
                             messageSnackbar.dismiss();
                         }
-                        messageSnackbar = null;
+                        showLoadingMessage("Toque na superficie gerada em cima da mesa");
+                        hasPlane = true;
                     }
                 });
     }
